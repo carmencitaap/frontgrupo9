@@ -1,0 +1,95 @@
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  color: #4b4b4b;
+}
+
+.main {
+  margin-top: 110px;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: 40% 60%;
+}
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: #7cd1e1;
+  width: 100%;
+  height: 110px;
+  color: white;
+  font-weight: 500;
+}
+
+.home-title {
+  font-size: 70px;
+  margin-left: 0.2em;
+  float: left;
+}
+
+.header > a {
+  float: right;
+  color: white;
+  text-decoration: none;
+  padding: 8px;
+  margin-right: 10px;
+  font-size: 30px;
+  margin-top: 50px;
+  font-weight: 325;
+}
+
+.header > a:hover {
+  color: #073979;
+}
+
+.groups {
+  display: grid;
+  grid-template-columns: 170px 170px;
+  grid-gap: 10px;
+  width: 50%;
+  /* margin-top: 140px; */
+  margin: 10px 0 0 40px;
+}
+
+.group-title, .evaluations-title {
+  font-size: 50px;
+  margin-left: 10px;
+  font-weight: 500;
+}
+
+.groups > div {
+  border-radius: 5%;
+  text-align: center;
+  height: 150px;
+  padding: 10px;
+  font-weight: 500;
+  border: solid 1.5px #e3e3e3;
+  /* https://getcssscan.com/css-box-shadow-examples */
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+th, td {
+  border: 1px solid #e3e3e3;
+  padding: 8px;
+}
+
+thead {
+  background-color: #679dcc;
+  color: white;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+tbody tr:hover {
+  background-color: #e3e3e3;
+}
+
+.evaluations {
+  margin-left: 30px;
+}
+
+/*# sourceMappingURL=styles.css.map */
