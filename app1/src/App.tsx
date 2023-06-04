@@ -2,6 +2,7 @@ import React from 'react';
 import './static/App.css';
 import Group from './Group'
 import Evaluation from './Evaluation';
+import Person from './Person';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
 
       <div className="main">
         <div className="container">
+          <Person />
           <Group />
           <Evaluation />
         </div>
