@@ -82,7 +82,7 @@
 
 .groups {
     display: grid;
-    grid-template-columns: 170px 170px;
+    grid-template-columns: 180px 180px;
     grid-gap: 10px;
     width: 50%;
     /* margin-top: 140px; */
@@ -97,10 +97,10 @@
 }
 .groups > div {
     border-radius: 5%;
-    text-align: center;
+    /* text-align: center; */
     height: 150px;
     padding: 10px;
-    font-weight: 500;
+    font-weight: 350;
     border: solid 1.5px var(--light-gray2);
     /* https://getcssscan.com/css-box-shadow-examples */
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
