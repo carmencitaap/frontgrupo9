@@ -44,7 +44,7 @@ function GetPerson() {
 
     return (
         <div>
-            <div id="group-create" className = "add-img">
+            <div id="person-create" className = "add-img">
                 <span className="people-title"> People </span>
                 <Popup trigger={<img src="user-plus-solid.svg" alt=""/>}
                 position="right center">

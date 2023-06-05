@@ -155,7 +155,7 @@ tbody tr:hover {
     text-align: center;
 } */
 
-.popup{
+.popup {
 	width: 450px;
 	font-size: 16px;
 	background: #89b2df;
@@ -185,4 +185,8 @@ tbody tr:hover {
     width: fit-content;
     word-break: break-word;
     border: 0;
+}
+
+.margin {
+    margin-left: 10px;
 }

@@ -26,7 +26,7 @@ function GetGroups() {
         const name = (document.getElementById('name') as HTMLInputElement).value;
         const number_of_people = (document.getElementById('np') as HTMLInputElement).value;
         let people = (document.getElementById('people') as HTMLInputElement).value;
-        // people = people.split(",")
+        let people_array = people.split(",")
 
 
         await fetch("https://cavenpal.pythonanywhere.com/group/", {
@@ -34,7 +34,7 @@ function GetGroups() {
             body: JSON.stringify({
                 name: name,
                 number_of_people: number_of_people,
-                people: people
+                people: people_array
             }),
             headers: {
                 'Content-type': 'application/json; charset=UTF-8',
@@ -77,23 +77,24 @@ function GetGroups() {
 
     return (
             <div className="groups">
-                <div id="group-create" className = "add-img">
-                    <Popup trigger={<img src="plus-solid.svg" alt=""/>}>
-                        <div className="popup">
-                            <form onSubmit={addGroup}>
-                                <label htmlFor="name">Name: </label>
-                                <input type="text" id="name" name="name" /><br />
+                <div id="group-create">
+                <Popup trigger={<img src="plus-solid.svg" alt="" className="margin"/>}
+                position="right center">
+                    <div className="popup">
+                        <form onSubmit={addGroup}>
+                            <label htmlFor="name">Name: </label>
+                            <input type="text" id="name" name="name" /><br />
 
-                                <label htmlFor="np">Number of people: </label>
-                                <input type="text" id="np" name="np" /><br />
+                            <label htmlFor="np">Number of people: </label>
+                            <input type="text" id="np" name="np" /><br />
 
-                                <label htmlFor="people">People: </label>
-                                <input type="text" id="people" name="people" /><br />
+                            <label htmlFor="people">People: </label>
+                            <input type="text" id="people" name="people" /><br />
 
-                                <button type="submit" className='button-34'>Create</button>
-                            </form>
-                        </div>
-                    </Popup>
+                            <button type="submit" className='button-34'>Create</button>
+                        </form>
+                    </div>
+                </Popup>
                 </div>
             {groups.map(group => (
                 <div key={group['id']}>

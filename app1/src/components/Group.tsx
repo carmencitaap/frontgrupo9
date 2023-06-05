@@ -7,7 +7,7 @@ function Group() {
         <div>
             <span className="group-title"> Groups </span>
             <GetGroups />
-      </div>
+        </div>
     );
 }
 
