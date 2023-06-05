@@ -29,6 +29,7 @@ function GetEvaluations() {
         const group = (document.getElementById('group') as HTMLInputElement).value;
         const numberOfQuestions = (document.getElementById('number_questions') as HTMLInputElement).value;
         const isActive = (document.getElementById('is_active') as HTMLInputElement).value;
+        const dueDate = (document.getElementById('due_date') as HTMLInputElement).value;
         
         console.log(isActive);
         
@@ -46,7 +47,8 @@ function GetEvaluations() {
                 name: name,
                 group: group,
                 number_of_questions: numberOfQuestions,
-                is_active: activity
+                is_active: activity,
+                due_date: dueDate
             }),
             headers: {
                 'Content-type': 'application/json; charset=UTF-8',
@@ -77,6 +79,8 @@ function GetEvaluations() {
                                     <option value="false">False</option>
                                 </select> <br />
         
+                                <label htmlFor="due_date">Due Date: </label>
+                                <input type="date" id="due_date" name="due_date" /><br />
 
                                 <button type="submit" className='button-34'>Create</button>
                             </form>
