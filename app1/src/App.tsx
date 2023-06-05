@@ -3,6 +3,7 @@ import './static/App.css';
 import Group from './components/Group'
 import Evaluation from './components/Evaluation';
 import Person from './components/Person';
+import Question from './components/Question'
 
 function App() {
   return (
@@ -15,9 +16,10 @@ function App() {
 
       <div className="main">
         <div className="container">
-          <Person />
           <Group />
+          <Person />
           <Evaluation />
+          <Question />
         </div>
       </div>
     </div>
