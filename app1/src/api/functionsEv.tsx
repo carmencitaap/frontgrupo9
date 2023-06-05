@@ -1,6 +1,6 @@
 import React, {useState , useEffect} from 'react';
 import Popup from 'reactjs-popup';
-
+import CreateButton from '../components/Button';
 
 function GetEvaluations() {
     const [evaluations, setEvaluations] = useState([]);
@@ -63,6 +63,7 @@ function GetEvaluations() {
                 <span className="evaluations-title"> Evaluations </span>
                 <Popup trigger ={<img src="add-document-note-svgrepo-com.svg" alt=""/>} position="right center">
                     <div className="popup">
+                    <span className="evaluation-popup"> Create an evaluation! </span>
                             <form onSubmit={addEvaluation}>
                                 <label htmlFor="name">Name: </label>
                                 <input type="text" id="name" name="name" /><br />
@@ -82,7 +83,7 @@ function GetEvaluations() {
                                 <label htmlFor="due_date">Due Date: </label>
                                 <input type="date" id="due_date" name="due_date" /><br />
 
-                                <button type="submit" className='button-34'>Create</button>
+                                <CreateButton />
                             </form>
                         </div> 
                 </Popup>

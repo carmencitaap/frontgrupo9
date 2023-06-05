@@ -1,6 +1,7 @@
 import React, {useState , useEffect} from 'react';
 // import PopupGfg from './Popup';
 import Popup from 'reactjs-popup';
+import CreateButton from '../components/Button';
 
 function GetGroups() {
 
@@ -81,6 +82,7 @@ function GetGroups() {
                 <Popup trigger={<img src="plus-solid.svg" alt="" className="margin"/>}
                 position="right center">
                     <div className="popup">
+                        <span className="group-popup"> Create a group! </span>
                         <form onSubmit={addGroup}>
                             <label htmlFor="name">Name: </label>
                             <input type="text" id="name" name="name" /><br />
@@ -91,7 +93,7 @@ function GetGroups() {
                             <label htmlFor="people">People: </label>
                             <input type="text" id="people" name="people" /><br />
 
-                            <button type="submit" className='button-34'>Create</button>
+                            <CreateButton />
                         </form>
                     </div>
                 </Popup>

@@ -146,47 +146,67 @@ tbody tr:hover {
     margin-left: 30px;
 }
 
-
-/* .popup {
-    height: 500px;
-    width: 500px;
-    background-color: #282c34;
-    
-    text-align: center;
-} */
-
 .popup {
 	width: 450px;
 	font-size: 16px;
-	background: #89b2df;
+	background: rgb(255, 255, 255);
 	padding: 30px 30px 15px 30px;
-	border: 5px solid var(--blue2);
-    color: white;
+	border: 3px solid #5e6a76;
+    color: var(--gray);
 }
 
 /* https://getcssscan.com/css-buttons-examples */
-.button-34 {
-    background: #5E5DF0;
-    border-radius: 999px;
-    box-shadow: #5E5DF0 0 10px 20px -10px;
-    box-sizing: border-box;
-    color: #FFFFFF;
-    cursor: pointer;
-    font-family: Inter,Helvetica,"Apple Color Emoji","Segoe UI Emoji",NotoColorEmoji,"Noto Color Emoji","Segoe UI Symbol","Android Emoji",EmojiSymbols,-apple-system,system-ui,"Segoe UI",Roboto,"Helvetica Neue","Noto Sans",sans-serif;
-    font-size: 16px;
-    font-weight: 700;
-    line-height: 24px;
-    opacity: 1;
-    outline: 0 solid transparent;
-    padding: 8px 18px;
-    user-select: none;
-    -webkit-user-select: none;
-    touch-action: manipulation;
-    width: fit-content;
-    word-break: break-word;
-    border: 0;
+/* CSS */
+.button-21 {
+  align-items: center;
+  appearance: none;
+  background-color: #3EB2FD;
+  background-image: linear-gradient(1deg, #4F58FD, #149BF3 99%);
+  background-size: calc(100% + 20px) calc(100% + 20px);
+  border-radius: 100px;
+  border-width: 0;
+  box-shadow: none;
+  box-sizing: border-box;
+  color: #FFFFFF;
+  cursor: pointer;
+  display: inline-flex;
+  font-family: CircularStd,sans-serif;
+  font-size: 1rem;
+  height: auto;
+  justify-content: center;
+  line-height: 1.5;
+  padding: 6px 20px;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  transition: background-color .2s,background-position .2s;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  vertical-align: top;
+  white-space: nowrap;
+  margin-top: 10px;
 }
+
+.button-21:active,
+.button-21:focus {
+  outline: none;
+}
+
+.button-21:hover {
+  background-position: -20px -20px;
+}
+
+.button-21:focus:not(:active) {
+  box-shadow: rgba(40, 170, 255, 0.25) 0 0 0 .125em;
+}
+
 
 .margin {
     margin-left: 10px;
+}
+
+.question-popup, .group-popup, .person-popup, .evaluation-popup {
+    font-weight: 550;
+    font-size: 120%;
 }

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Popup from 'reactjs-popup';
+import CreateButton from "../components/Button";
 
 function GetPerson() {
     const [people, setPerson] = useState([]);
@@ -49,6 +50,7 @@ function GetPerson() {
                 <Popup trigger={<img src="user-plus-solid.svg" alt=""/>}
                 position="right center">
                     <div className="popup">
+                        <span className="person-popup"> Create a person! </span>
                         <form onSubmit={addPerson}>
                             <label htmlFor="name">Name: </label>
                             <input type="text" id="name" name="name" /><br />
@@ -59,7 +61,7 @@ function GetPerson() {
                             <label htmlFor="email">Email: </label>
                             <input type="text" id="email" name="email" /><br />
 
-                            <button type="submit" className='button-34'>Create</button>
+                            <CreateButton />
                         </form>
                     </div>
                 </Popup>
