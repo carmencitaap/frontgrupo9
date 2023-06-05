@@ -46,7 +46,7 @@
 
 .container {
     display: grid;
-    grid-template-columns: 33% 33% 33%;
+    grid-template-columns: 40% 60%;
 }
 
 .header {
@@ -87,27 +87,28 @@
     grid-gap: 10px;
     width: 50%;
     /* margin-top: 140px; */
-    margin: 10px 0 0 40px;
+    margin: 10px 0 15px 40px;
 }
 
 .groups .add-img{
-    background-size: cover;
-    background-position: center;
+    /* background-size: cover;
+    background-position: center; */
     /* align-items: center;
     justify-content: center; */
     width: 90%;
     height: 90%; 
     opacity: 35% ;
-    border: solid 1.5px var(--light-gray2);
+    /* border: solid 1.5px var(--light-gray2); */
     padding: 10px;
     border-radius: 5%;
-    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    z-index: -1;
+    /* box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px; */
 }
 
-.group-title, .evaluations-title, .people-title {
+.group-title, .evaluations-title, .people-title, .question-title {
     font-size: 50px;
     margin-left: 10px;
-    font-weight: 500;
+    font-weight: 500
 }
 .groups > div {
     border-radius: 5%;
