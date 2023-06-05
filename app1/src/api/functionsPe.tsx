@@ -59,7 +59,7 @@ function GetPerson() {
                                 <label htmlFor="email">Email: </label>
                                 <input type="text" id="email" name="email" /><br />
 
-                                <button type="submit">Create</button>
+                                <button type="submit" className='button-34'>Create</button>
                             </form>
                         </div>
                     </Popup>
