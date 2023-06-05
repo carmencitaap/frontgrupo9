@@ -9,7 +9,7 @@ function GetGroups() {
         fetch("https://cavenpal.pythonanywhere.com/group/", {method:'GET'})
         .then((response) => response.json())
         .then(data => {
-            console.log(data);
+            // console.log(data);
             setGroups(data)
           })
         .catch((err) => {
@@ -34,7 +34,7 @@ function GetGroups() {
             body: JSON.stringify({
                 name: name,
                 number_of_people: number_of_people,
-                people: 1
+                people: people
             }),
             headers: {
                 'Content-type': 'application/json; charset=UTF-8',
