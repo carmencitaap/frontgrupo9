@@ -2,13 +2,13 @@ import React, { useState, useEffect } from "react";
 import Popup from 'reactjs-popup';
 
 function GetPerson() {
-    const [persons, setPerson] = useState([]);
+    const [people, setPerson] = useState([]);
 
     const getPerson = () => {
         fetch("https://cavenpal.pythonanywhere.com/person/")
         .then((response) => response.json())
         .then(data => {
-            console.log(data);
+            // console.log(data);
             setPerson(data)
           })
         .catch((err) => {
@@ -44,26 +44,26 @@ function GetPerson() {
 
     return (
         <div>
-            <span className="people-title"> People </span>
             <div id="group-create" className = "add-img">
-                    <Popup trigger={<img src="plus-solid.svg" alt=""/>}
-                    position="right center">
-                        <div className="popup">
-                            <form onSubmit={addPerson}>
-                                <label htmlFor="name">Name: </label>
-                                <input type="text" id="name" name="name" /><br />
+                <span className="people-title"> People </span>
+                <Popup trigger={<img src="user-plus-solid.svg" alt=""/>}
+                position="right center">
+                    <div className="popup">
+                        <form onSubmit={addPerson}>
+                            <label htmlFor="name">Name: </label>
+                            <input type="text" id="name" name="name" /><br />
 
-                                <label htmlFor="lname">Last Name: </label>
-                                <input type="text" id="lname" name="lname" /><br />
+                            <label htmlFor="lname">Last Name: </label>
+                            <input type="text" id="lname" name="lname" /><br />
 
-                                <label htmlFor="email">Email: </label>
-                                <input type="text" id="email" name="email" /><br />
+                            <label htmlFor="email">Email: </label>
+                            <input type="text" id="email" name="email" /><br />
 
-                                <button type="submit" className='button-34'>Create</button>
-                            </form>
-                        </div>
-                    </Popup>
-                </div>
+                            <button type="submit" className='button-34'>Create</button>
+                        </form>
+                    </div>
+                </Popup>
+            </div>
             <table className="people">
                 <thead>
                     <tr>
@@ -74,7 +74,7 @@ function GetPerson() {
                     </tr>
                 </thead>
                 <tbody>
-                {persons.map(person => (
+                {people.map(person => (
                     <tr key={person['id']}>
                         <td> {person['id']} </td>
                         <td> {person['name']} </td>
