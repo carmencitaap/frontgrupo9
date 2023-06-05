@@ -47,8 +47,8 @@
 .container {
     display: grid;
     grid-template-columns: 33% 33% 33%;
-    
 }
+
 .header {
     position: fixed;
     top:0;
@@ -90,11 +90,24 @@
     margin: 10px 0 0 40px;
 }
 
+.groups .add-img{
+    background-size: cover;
+    background-position: center;
+    /* align-items: center;
+    justify-content: center; */
+    width: 90%;
+    height: 90%; 
+    opacity: 35% ;
+    border: solid 1.5px var(--light-gray2);
+    padding: 10px;
+    border-radius: 5%;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
 .group-title, .evaluations-title, .people-title {
     font-size: 50px;
     margin-left: 10px;
     font-weight: 500;
-    margin:0;
 }
 .groups > div {
     border-radius: 5%;
@@ -118,13 +131,34 @@ thead {
 }
 
 table {
+    margin-top: 10px;
     border-collapse: collapse;
+    align-items: center;
+    text-align: center;
 }
 
 tbody tr:hover {
     background-color: var(--light-gray2);
 }
 
-.evaluations {
+.evaluations, .people {
     margin-left: 30px;
+}
+
+
+/* .popup {
+    height: 500px;
+    width: 500px;
+    background-color: #282c34;
+    
+    text-align: center;
+} */
+
+.popup{
+	width: 450px;
+	font-size: 16px;
+	background: #89b2df;
+	padding: 30px 30px 15px 30px;
+	border: 5px solid var(--blue2);
+    color: white;
 }

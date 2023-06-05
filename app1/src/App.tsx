@@ -1,8 +1,8 @@
 import React from 'react';
 import './static/App.css';
-import Group from './Group'
-import Evaluation from './Evaluation';
-import Person from './Person';
+import Group from './components/Group'
+import Evaluation from './components/Evaluation';
+import Person from './components/Person';
 
 function App() {
   return (
