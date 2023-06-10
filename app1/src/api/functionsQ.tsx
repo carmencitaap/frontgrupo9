@@ -53,6 +53,22 @@ function GetQuestions(){
         console.log(order,question,correct_answer,type_question,difficulty,tags,test);
     };
 
+    const deleteQuestion = async (id: any) => {
+        await fetch(QUESTION_ENDPOINT+id+"/", {
+            method: 'DELETE',
+        })
+        .then((response) => {
+            if (response.status === 200) {
+                setQuestions(
+                    questions.filter((question) => {
+                        return question['id'] !== id;
+                 })
+              );
+            } else {
+                return "Couldn't delete question.";
+            }
+        });
+    };
 
     return (
         <div>
@@ -109,6 +125,7 @@ function GetQuestions(){
                         <td> {question['correct_answer']} </td>
                         <td> {question['type_question']} </td>
                         <td> {question['difficulty']} </td>
+                        <td> <button onClick={()=> deleteQuestion(question['id'])} className='delete-btn'> <img src="trash-full-svgrepo-com.svg" alt="trash"/> </button></td>
                     </tr>
                     ))}
                 </tbody>

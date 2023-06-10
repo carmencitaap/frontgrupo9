@@ -63,6 +63,23 @@ function GetGroups() {
         console.log(full_name,email)
     };
 
+    const deleteGroup = async (id: any) => {
+        await fetch(GROUP_ENDPOINT+id+"/", {
+            method: 'DELETE',
+        })
+        .then((response) => {
+            if (response.status === 200) {
+                setGroups(
+                    groups.filter((group) => {
+                        return group['id'] !== id;
+                 })
+              );
+            } else {
+                return "Couldn't delete group.";
+            }
+        });
+    };
+
     return (
             <div className="groups">
                 <div id="group-create">
@@ -106,6 +123,7 @@ function GetGroups() {
                             </form>
                         </div>
                     </Popup>
+                    <button className='delete-btn' onClick={()=> deleteGroup(group['id'])}> <img src="trash-full-svgrepo-com.svg" alt="trash" /></button>
                 </div>
             ))}
         </div>
