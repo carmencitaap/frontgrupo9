@@ -4,6 +4,7 @@ import Group from './components/Group'
 import Evaluation from './components/Evaluation';
 import Person from './components/Person';
 import Question from './components/Question'
+import Test from './components/Test';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <div className="container">
           <Group />
           <Person />
+          <Test />
           <Evaluation />
           <Question />
         </div>

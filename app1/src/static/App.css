@@ -105,7 +105,7 @@
     /* box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px; */
 }
 
-.group-title, .evaluations-title, .people-title, .question-title {
+.group-title, .evaluations-title, .people-title, .question-title, .test-title {
     font-size: 50px;
     margin-left: 10px;
     font-weight: 500
@@ -200,13 +200,13 @@ tbody tr:hover {
 .button-21:focus:not(:active) {
   box-shadow: rgba(40, 170, 255, 0.25) 0 0 0 .125em;
 }
-
+/* --------------------------------------------------------- */
 
 .margin {
     margin-left: 10px;
 }
 
-.question-popup, .group-popup, .person-popup, .evaluation-popup {
+.question-popup, .group-popup, .person-popup, .evaluation-popup, .test-popup{
     font-weight: 550;
     font-size: 120%;
 }

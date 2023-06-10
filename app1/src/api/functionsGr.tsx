@@ -10,7 +10,7 @@ const PERSON_ENDPOINT = "https://cavenpal.pythonanywhere.com/person/"
 function GetGroups() {
     const [groups, setGroups] = useState([]);
     const getGroups = () => {
-        fetch("https://cavenpal.pythonanywhere.com/group/", {method:'GET'})
+        fetch(GROUP_ENDPOINT, {method:'GET'})
         .then((response) => response.json())
         .then(data => {
             // console.log(data);
