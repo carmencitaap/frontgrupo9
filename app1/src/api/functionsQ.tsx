@@ -1,11 +1,14 @@
 import React, {useState , useEffect} from 'react';
 import Popup from 'reactjs-popup';
 import CreateButton from '../components/Button';
+
+const QUESTION_ENDPOINT = "https://cavenpal.pythonanywhere.com/question/"; 
+
 function GetQuestions(){
     const [questions, setQuestions] = useState([]);
 
     const getQuestions = () => {
-        fetch("https://cavenpal.pythonanywhere.com/question/")
+        fetch(QUESTION_ENDPOINT)
         .then((response) => response.json())
         .then(data => {
             // console.log(data);
@@ -30,9 +33,9 @@ function GetQuestions(){
         const type_question = (document.getElementById('type-question') as HTMLInputElement).value;
         const difficulty = (document.getElementById('difficulty') as HTMLInputElement).value;
         const tags = (document.getElementById('tags') as HTMLInputElement).value;
-        const evaluation = (document.getElementById('evaluation') as HTMLInputElement).value;
+        const test = (document.getElementById('test') as HTMLInputElement).value;
 
-        await fetch("https://cavenpal.pythonanywhere.com/question/", {
+        await fetch(QUESTION_ENDPOINT, {
             method: 'POST',
             body: JSON.stringify({
                 order: order,
@@ -41,13 +44,13 @@ function GetQuestions(){
                 type_question: type_question,
                 difficulty: difficulty,
                 tags_question: tags,
-                evaluation: evaluation
+                test_id: test
             }),
             headers: {
                 'Content-type': 'application/json; charset=UTF-8',
             },
         })
-        console.log(order,question,correct_answer,type_question,difficulty,tags,evaluation);
+        console.log(order,question,correct_answer,type_question,difficulty,tags,test);
     };
 
 
@@ -78,8 +81,8 @@ function GetQuestions(){
                             <label htmlFor="tags"> Tags: </label>
                             <input type="text" id="tags" name="tags" /><br />
 
-                            <label htmlFor="evaluation"> Evaluation: </label>
-                            <input type="text" id="evaluation" name="evaluation" /><br />
+                            <label htmlFor="test"> Test: </label>
+                            <input type="text" id="test" name="test" /><br />
 
                             <CreateButton />
 
@@ -95,6 +98,7 @@ function GetQuestions(){
                         <th> Correct Ans </th>
                         <th> Type </th>
                         <th> Difficulty </th>
+                        <th> Delete </th>
                     </tr>
                 </thead>
                 <tbody>
