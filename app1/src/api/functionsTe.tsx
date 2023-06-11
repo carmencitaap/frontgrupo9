@@ -66,7 +66,7 @@ function GetTests() {
                     <tr>
                         <th> Number </th>
                         <th> Evaluation </th>
-                        <th> Is active? </th>
+                        <th> number of questions </th>
                     </tr>
                 </thead>
                 <tbody>
