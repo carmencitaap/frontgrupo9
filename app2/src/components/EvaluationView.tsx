@@ -1,44 +1,32 @@
 import React, {useState , useEffect} from 'react';
-import{useParams} from "react-router-dom";
+import {useParams} from "react-router-dom";
 
 
 
 function GetEvaluation(){
   const [evaluation, setEvaluation] = useState([]);
   const {evaluationId} = useParams()
-  const EVALUATION_ENDPOINT = "https://cavenpal.pythonanywhere.com/evaluation/"
+  const EVALUATION_ENDPOINT = `http://localhost:8000/evaluation/${evaluationId}`
 
-  useEffect (() => {
-    fetch(`${EVALUATION_ENDPOINT}${evaluationId}`)
-    .then((response) => response.json())
-        .then(data => {
-            console.log(data);
-            setEvaluation(data)
-          })
-        .catch((err) => {
-            console.log(err.message)
-        })
-  }, [evaluationId]);
+  useEffect(() => {
+    fetch(EVALUATION_ENDPOINT)
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        setEvaluation(data);
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
+  }, [EVALUATION_ENDPOINT]);
 
   return (
     <div>
-      {evaluation.map(ev => (
-        <p key={ev['id']}>Evaluation Name: {ev["name"]}</p>
-      ))}
+        holaaaa
+        
+        <p>{evaluation}</p>
     </div>
   )
 }
 
-
-function EvaluationView() {
-
-  return (
-    // <div>
-    //   <p>Evaluation Name: {evaluationId}</p>
-    //   <p>Instructions</p>
-    // </div>
-    <GetEvaluation />
-  );
-}
-
-export default EvaluationView;
+export default GetEvaluation;
