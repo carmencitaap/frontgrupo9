@@ -1,32 +1,15 @@
-import React, {useState , useEffect} from 'react';
-import {useParams} from "react-router-dom";
+import React from 'react';
+import GetEvaluation from '../api/functionsEv';
 
 
-
-function GetEvaluation(){
-  const [evaluation, setEvaluation] = useState([]);
-  const {evaluationId} = useParams()
-  const EVALUATION_ENDPOINT = `http://localhost:8000/evaluation/${evaluationId}`
-
-  useEffect(() => {
-    fetch(EVALUATION_ENDPOINT)
-      .then((response) => response.json())
-      .then((data) => {
-        console.log(data);
-        setEvaluation(data);
-      })
-      .catch((err) => {
-        console.log(err.message);
-      });
-  }, [EVALUATION_ENDPOINT]);
+function EvaluationView() {
 
   return (
     <div>
-        holaaaa
-        
-        <p>{evaluation}</p>
+      <GetEvaluation />
     </div>
-  )
+    
+  );
 }
 
-export default GetEvaluation;
+export default EvaluationView;

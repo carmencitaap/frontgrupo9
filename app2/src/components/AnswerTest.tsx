@@ -1,9 +1,8 @@
 import React from "react";
+import GetTests from "../api/functionsT";
 
 function AnswerTest() {
-    return (
-    <h1 className="ev-title">Answer Evaluation!</h1>
-    );
+    return <GetTests />
 }
 
 export default AnswerTest;
