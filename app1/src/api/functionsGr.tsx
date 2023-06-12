@@ -96,6 +96,23 @@ function GetGroups() {
         })
     }
 
+    const deletePerson = async (id: any) => {
+        await fetch("https://cavenpal.pythonanywhere.com/person/"+id+"/delete_person/",{
+            method: 'DELETE',
+        })
+        .then((response) => {
+            if (response.status === 200) {
+                setPeople(
+                    people.filter((people) => {
+                        return people['id'] !== id;
+                 })
+              );
+            } else {
+                return "Couldn't delete this person.";
+            }
+        });
+    };
+
 
     return (
             <div className="groups">
@@ -103,10 +120,13 @@ function GetGroups() {
                 <Popup trigger={<img src="plus-solid.svg" alt="" className="margin"/>}
                 position="right center">
                     <div className="popup">
-                        <span className="group-popup"> Create a group! </span>
+                        <div className="group-popup"> Create a group! </div>
                         <form onSubmit={addGroup}>
                             <label htmlFor="name">Name: </label>
                             <input type="text" id="name" name="name" /><br />
+
+                            <label htmlFor="avatar">Avatar: </label>
+                            <input type="file" id="avatar" name="avatar" accept="image/*" /><br />
 
                             <CreateButton />
                         </form>
@@ -116,17 +136,20 @@ function GetGroups() {
                 
 
             {groups.map(group => (
-                <div key={group['id']}>
-                    <span> Group ID: {group['id']}</span>
+                <div className='card-group' key={group['id']}>
+                    <div className="image-card-group">
+                        <img src={group['avatar']} alt="" className="image-group" />
+                    </div>
+                    <div className="content-card-group">
+                    <div className='Name-group-card'> Name: {group['name']} </div>
+                    <div> Group ID: {group['id']}</div>
+                    <div> Number of people: {group['number_of_people']} </div>
                     <br />
-                    <span> Name: {group['name']} </span>
-                    <br />
-                    <span> Number of people: {group['number_of_people']} </span>
-                    <br />
+                    
                     <Popup trigger={<img src="user-plus-solid.svg" alt=""/>}
                     position="right center">
                         <div className="popup">
-                            <span className="person-popup"> Create a person! </span>
+                            <div className="person-popup"> Create a person! </div>
                             <form onSubmit={()=>addPerson(group['id'])}>
                                 <label htmlFor="name"> Full Name: </label>
                                 <input type="text" id="name" name="name" /><br />
@@ -142,7 +165,7 @@ function GetGroups() {
                     
                     <Popup  trigger={<img src="users-solid.svg" alt="" className ="popup2" />} position="right center" onOpen={() => getPeople(group['id'])}>
                     <div className="popup">
-                        <span className="person-popup"> Persons of the group </span>
+                        <div className="person-popup"> Persons of the group </div>
                         {people.length > 0 ? (
                         <table className="people">
                             <thead>
@@ -150,6 +173,7 @@ function GetGroups() {
                                 <th>ID</th>
                                 <th>Full Name</th>
                                 <th>Email</th>
+                                <th>D</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -158,6 +182,7 @@ function GetGroups() {
                                 <td>{person['id']}</td>
                                 <td>{person['full_name']}</td>
                                 <td>{person['email']}</td>
+                                <td><button className='delete-btnP' onClick={()=> deletePerson(person['id'])}> <img src="trash-full-svgrepo-com.svg" alt="trash" /></button></td>
                                 </tr>
                             ))}
                             </tbody>
@@ -168,6 +193,9 @@ function GetGroups() {
                     </div>
                     </Popup>
                     <button className='delete-btn' onClick={()=> deleteGroup(group['id'])}> <img src="trash-full-svgrepo-com.svg" alt="trash" /></button>
+
+                    </div>
+                    
                 </div>
             ))}
         </div>
