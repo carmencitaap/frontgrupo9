@@ -1,11 +1,11 @@
 import React from 'react';
-import './static/App.css';
+import './static/App.scss';
 import Group from './components/Group'
 import Evaluation from './components/Evaluation';
 //import Person from './components/Person';
 // import Question from './components/Question'
-import Test from './components/Test';
-import Contact from './components/sendEmail';
+// import Test from './components/Test';
+// import Contact from './components/sendEmail';
 
 function App() {
   return (
