@@ -2,7 +2,6 @@ import React from 'react';
 import './static/App.css';
 import { BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import EvaluationView from './components/EvaluationView';
-import QuestionView from './components/QuestionView';
 
 function App() {
   return (
