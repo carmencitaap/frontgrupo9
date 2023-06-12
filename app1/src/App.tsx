@@ -3,8 +3,9 @@ import './static/App.css';
 import Group from './components/Group'
 import Evaluation from './components/Evaluation';
 //import Person from './components/Person';
-import Question from './components/Question'
+// import Question from './components/Question'
 import Test from './components/Test';
+import Contact from './components/sendEmail';
 
 function App() {
   return (
@@ -22,10 +23,13 @@ function App() {
           </div>
           <div className="conteiner_evaluations">
             <Evaluation />
+            
+            
+            {/* <Test /> */}
             {/* <div className="conteiner_tests">
               <Test />
               <div className="conteiner_qustion">
-                <Question />
+                
               </div>
             </div> */}
           </div>

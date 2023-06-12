@@ -35,7 +35,7 @@ function GetQuestions(){
         const tags = (document.getElementById('tags') as HTMLInputElement).value;
         const test = (document.getElementById('test') as HTMLInputElement).value;
 
-        await fetch(QUESTION_ENDPOINT, {
+        await fetch(QUESTION_ENDPOINT+'add_question/', {
             method: 'POST',
             body: JSON.stringify({
                 order: order,
@@ -72,64 +72,37 @@ function GetQuestions(){
 
     return (
         <div>
-            <div id="person-create" className = "add-img">
-                <div className="question-title"> Questions </div>
-                <Popup trigger={<img src="add-row-svgrepo-com.svg" alt=""/>}
-                position="right center">
-                    <div className="popup">
-                        <span className="question-popup"> Create a question! </span>
-                        <form onSubmit={addQuestion}>
-                            <label htmlFor="question"> Question: </label>
-                            <input type="text" id="question" name="question" /><br />
+            <Popup trigger={<img src="circle-question-solid.svg" alt=""/>}
+            position="left center">
+                <div className="popup">
+                    <span className="question-popup"> Create a question! </span>
+                    <form onSubmit={addQuestion}>
+                        <label htmlFor="question"> Question: </label>
+                        <input type="text" id="question" name="question" /><br />
 
-                            <label htmlFor="order">Order: </label>
-                            <input type="text" id="order" name="order" /><br />
+                        <label htmlFor="order">Order: </label>
+                        <input type="text" id="order" name="order" /><br />
 
-                            <label htmlFor="correct-answer">Correct Answer: </label>
-                            <input type="text" id="correct-answer" name="correct-answer" /><br />
+                        <label htmlFor="correct-answer">Correct Answer: </label>
+                        <input type="text" id="correct-answer" name="correct-answer" /><br />
 
-                            <label htmlFor="type-question"> Type: </label>
-                            <input type="text" id="type-question" name="type-question" /><br />
+                        <label htmlFor="type-question"> Type: </label>
+                        <input type="text" id="type-question" name="type-question" /><br />
 
-                            <label htmlFor="difficulty"> Difficulty: </label>
-                            <input type="text" id="difficulty" name="difficulty" /><br />
+                        <label htmlFor="difficulty"> Difficulty: </label>
+                        <input type="text" id="difficulty" name="difficulty" /><br />
 
-                            <label htmlFor="tags"> Tags: </label>
-                            <input type="text" id="tags" name="tags" /><br />
+                        <label htmlFor="tags"> Tags: </label>
+                        <input type="text" id="tags" name="tags" /><br />
 
-                            <label htmlFor="test"> Test: </label>
-                            <input type="text" id="test" name="test" /><br />
+                        <label htmlFor="test"> Test: </label>
+                        <input type="text" id="test" name="test" /><br />
 
-                            <CreateButton />
+                        <CreateButton />
 
-                        </form>
-                    </div>
-                </Popup>
-            </div>
-            <table className="questions">
-                <thead>
-                    <tr>
-                        <th> Number </th>
-                        <th> Question </th>
-                        <th> Correct Ans </th>
-                        <th> Type </th>
-                        <th> Difficulty </th>
-                        <th> Delete </th>
-                    </tr>
-                </thead>
-                <tbody>
-                {questions.map(question => (
-                    <tr key={question['id']}>
-                        <td> {question['id']} </td>
-                        <td> {question['question']} </td>
-                        <td> {question['correct_answer']} </td>
-                        <td> {question['type_question']} </td>
-                        <td> {question['difficulty']} </td>
-                        <td> <button onClick={()=> deleteQuestion(question['id'])} className='delete-btn'> <img src="trash-full-svgrepo-com.svg" alt="trash"/> </button></td>
-                    </tr>
-                    ))}
-                </tbody>
-            </table>
+                    </form>
+                </div>
+            </Popup>
         </div>
     );
 }

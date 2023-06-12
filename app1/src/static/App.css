@@ -81,6 +81,7 @@
     width: 90%;
     /* margin-top: 140px; */
     margin: auto;
+    margin-top: 0%;
     align-items: center;
 }
 
@@ -103,7 +104,7 @@
     z-index: -1; 
 } */
 
-.group-title, .evaluations-title, .people-title, .question-title, .test-title {
+.group-title, .evaluations-title, .people-title, .question-title{
     font-size: 50px;
     margin-left: 10px;
     font-weight: 500
@@ -207,7 +208,7 @@
 
 .dentro-ev-card{
   display: grid;
-  grid-template-rows: 1fr 1fr;
+  grid-template-rows: auto auto;
   height: 100%;
   margin-top: 5px;
   margin-left: 5px;
@@ -215,20 +216,32 @@
 }
 
 .info_just_ev{
-  height: 100%;
-
+  height: auto;
 }
 
 .info_test_ev{
-  height: 100%;
+  height: auto;
   margin-top: 10px;
+  display: grid;
+  grid-template-rows: auto auto;
+  margin-top: 0px;
 }
 
-.title-test-on-ev{
+.title-test-on-ev, .test-title {
+  font-size: 25px;
+  font-weight: 500;
+  margin-top: 0px;
+}
+.test-n-card{
+  display: grid;
+  grid-template-columns: 50% 50%;
   font-size: 20px;
   font-weight: 500;
 }
 
+hr{
+  width: 100%;
+}
 th,td {
     border: 1px solid var(--light-gray2);
     padding: 8px;
@@ -319,11 +332,14 @@ tbody tr:hover {
     margin-left: 10px;
 }
 
-.question-popup, .group-popup, .person-popup, .evaluation-popup, .test-popup{
+.question-popup, .group-popup, .person-popup, .evaluation-popup{
     font-weight: 550;
     font-size: 120%;
 }
-
+.test-popup{
+    font-weight: 200;
+    font-size: 15px;
+}
 .delete-btn {
   background-color: #ff3939;
   /* color: white; */
@@ -358,7 +374,60 @@ tbody tr:hover {
   border: solid;
   margin-top: 30px;
   margin-bottom: 0px;
+  margin-left: 50px;
+  
 }
+.seeQ-btn{
+  background-color: #39ff4a;
+  /* color: white; */
+  float:right;
+  align-items: center;
+  color:white;
+  border-radius: 15%;
+  padding:3px;
+  border: solid;
+  margin-top: 30px;
+  margin-bottom: 0px;
+}
+.addQ-btn{
+  background-color: #fbff00;
+  /* color: white; */
+  float:right;
+  align-items: center;
+  color:white;
+  border-radius: 15%;
+  padding:3px;
+  border: solid;
+  margin-top: 30px;
+  margin-bottom: 0px;
+
+}
+
+
+.btnSeeTest{
+  background-color: #9b902e;
+  /* color: white; */
+  align-items: center;
+  width: 30%;
+  color:white;
+  border-radius: 15%;
+  padding:3px;
+  border: solid;
+}
+.shereBtn{
+  background-color: #2bff24;
+  /* color: white; */
+  float:right;
+  align-items: center;
+  color:white;
+  border-radius: 15%;
+  padding:3px;
+  border: solid;
+  width: 30%;
+  margin-top: 30px;
+  margin-bottom: 0px;
+}
+
 .delete-btn:hover {
   background-color: #8b1b1b;
 }

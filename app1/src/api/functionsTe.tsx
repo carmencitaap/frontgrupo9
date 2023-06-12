@@ -1,87 +1,69 @@
-import React, {useState , useEffect} from 'react';
-import CreateButton from '../components/Button';
+import React, { useState, useEffect } from 'react';
 import Popup from 'reactjs-popup';
 
-const TEST_ENDPOINT = "https://cavenpal.pythonanywhere.com/test/"
+const TEST_ENDPOINT = 'https://cavenpal.pythonanywhere.com/test/';
 
 function GetTests() {
-    const [tests, setTests] = useState([]);
+  const [tests, setTests] = useState([]);
 
-    const getTests = () => {
-        fetch(TEST_ENDPOINT)
-        .then((response) => response.json())
-        .then(data => {
-            console.log(data);
-            setTests(data)
-          })
-        .catch((err) => {
-            console.log(err.message)
-        })
-      }
-      
-      useEffect (() => {
-        getTests()
-      }, [])
+  const getTests = () => {
+    fetch(TEST_ENDPOINT)
+      .then((response) => response.json())
+      .then((data) => {
+        console.log('data', data);
+        setTests(data);
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
+  };
 
+  useEffect(() => {
+    getTests();
+  }, []);
 
-    const addTest = async (event: React.FormEvent<HTMLFormElement>) => {
-        event.preventDefault();
-        
-        const evaluation = (document.getElementById('evaluation') as HTMLInputElement).value;
-        const numberOfQuestions = (document.getElementById('number-of-questions') as HTMLInputElement).value;
+  const addTest = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
 
-        await fetch(TEST_ENDPOINT, {
-            method: 'POST',
-            body: JSON.stringify({
-                evaluation_id: evaluation,
-                number_of_questions: numberOfQuestions
-            }),
-            headers: {
-                'Content-type': 'application/json; charset=UTF-8',
-            },
-        })
-        console.log("fetched:", evaluation, numberOfQuestions)
-    };
+    const evaluation = (document.getElementById('evaluation') as HTMLInputElement).value;
 
-    return (
-        <div>
-            <span className="test-title"> Tests </span>
-            <Popup trigger={<img src="add-row-svgrepo-com.svg" alt=""/>}
-                position="right center">
-                    <div className="popup">
-                        <span className="test-popup"> Create a test! </span>
-                        <form onSubmit={addTest}>
-                            <label htmlFor="evaluation"> Evaluation: </label>
-                            <input type="text" id="evaluation" name="evaluation" /><br />
+    await fetch(TEST_ENDPOINT, {
+      method: 'POST',
+      body: JSON.stringify({
+        evaluation: evaluation,
+        master_test: true
+      }),
+      headers: {
+        'Content-type': 'application/json; charset=UTF-8',
+      },
+    });
 
-                            <label htmlFor="question"> Evaluation: </label>
-                            <input type="text" id="question" name="question" /><br />
+    console.log('fetched ev:', evaluation);
 
-                            <CreateButton />
-                        </form>
-                    </div>
-                </Popup>
-            <table className="Tests">
-                <thead>
-                    <tr>
-                        <th> Number </th>
-                        <th> Evaluation </th>
-                        <th> number of questions </th>
-                    </tr>
-                </thead>
-                <tbody>
-                {tests.map(test => (
-                    <tr key={test['id']}>
-                        <td> {test['id']} </td>
-                        <td> {test['evaluation_id']} </td>
-                        <td> {test['number_of_questions']} </td>
-                    </tr>
-                    ))}
-                </tbody>
-            </table>
-                
+    // Refresh the tests list after adding a new test
+    getTests();
+  };
+
+  return (
+    <div>
+      <span className="test-title">Tests</span>
+      <Popup
+        trigger={<img src="add-row-svgrepo-com.svg" alt="" />}
+        position="right center"
+      >
+        <div className="popup">
+          <span className="test-popup">Create a test!</span>
+          <form onSubmit={addTest}>
+            <label htmlFor="evaluation">Evaluation:</label>
+            <input type="text" id="evaluation" name="evaluation" required />
+            <br />
+
+            <button type="submit">Create</button>
+          </form>
         </div>
-    );
+      </Popup>
+    </div>
+  );
 }
 
 export default GetTests;
