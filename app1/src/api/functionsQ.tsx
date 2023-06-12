@@ -73,7 +73,7 @@ function GetQuestions(){
     return (
         <div>
             <div id="person-create" className = "add-img">
-                <span className="question-title"> Questions </span>
+                <div className="question-title"> Questions </div>
                 <Popup trigger={<img src="add-row-svgrepo-com.svg" alt=""/>}
                 position="right center">
                     <div className="popup">

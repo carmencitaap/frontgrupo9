@@ -27,15 +27,11 @@ function GetEvaluations() {
 
     const addEvaluation = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        
         const name = (document.getElementById('name') as HTMLInputElement).value;
         const isActive = (document.getElementById('is_active') as HTMLInputElement).value;
         const dueDate = (document.getElementById('due_date') as HTMLInputElement).value;
         const group = (document.getElementById('group') as HTMLInputElement).value;
-        
-        console.log(isActive);
-        //console.log(group);
-        
+        //console.log(isActive);
         let activity;
         if (isActive === 'true'){
             activity = true
@@ -59,8 +55,21 @@ function GetEvaluations() {
         console.log("fetched:",name, group, isActive)
     };
 
+    const deleteEvaluation = async (id: any) => {
+        await fetch(EVALUATION_ENDPOINT+id+'/', {
+            method: 'DELETE',
+        })
+        .then((response) => {
+            console.log(response)
+        })
+        .catch((err) => {
+            console.log(err.message)
+        })
+    }
+
+
     return (
-        <div>
+        <div className='evaluations'>
             <div id="evaluation-create" className="add-img">
                 <span className="evaluations-title"> Evaluations </span>
                 <Popup trigger ={<img src="add-document-note-svgrepo-com.svg" alt=""/>} position="right center">
@@ -82,33 +91,36 @@ function GetEvaluations() {
                                 <label htmlFor="group">Group: </label>
                                 <input type="text" id="group" name="group" /><br />
 
-
-
                                 <CreateButton />
                             </form>
                         </div> 
                 </Popup>
             </div>
-            <table className="evaluations">
-                <thead>
-                    <tr>
-                        <th> Number </th>
-                        <th> Name </th>
-                        <th> Is active? </th>
-                        <th> Groups </th>
-                    </tr>
-                </thead>
-                <tbody>
+            <div className="info_ev">
+
                 {evaluations.map(evaluation => (
-                    <tr key={evaluation['id']}>
-                        <td> {evaluation['id']} </td>
-                        <td> {evaluation['name']} </td>
-                        <td> {evaluation['is_active'] ? "Yes": "No"} </td>
-                        <td> {evaluation['group']} </td>
-                    </tr>
+                    <div className="card-evaluation" key={evaluation['id']}>
+                        <div className='n_ev-card'>N°{evaluation['id']}</div>
+                        <div className="dentro-ev-card">  
+                            <div className="info_just_ev">
+                                <div className='name-ev-card'> Name: {evaluation['name']} </div>
+                                <button className='delete-btnE' onClick={()=> deleteEvaluation(evaluation['id'])}> <img src="trash-full-svgrepo-com.svg" alt="trash" /></button> 
+                                <div> Is active? {evaluation['is_active'] ? "Yes": "No"} </div>
+                                <div> Groups {evaluation['group']} </div>
+                                <div> Due date: {evaluation['due_date']} </div>
+                            </div>     
+                            
+                            <div className="info_test_ev">
+                                <hr></hr>
+                                <div className="title-test-on-ev">Tests:</div>
+                            </div>                
+
+                        </div>
+
+                    </div>
                     ))}
-                </tbody>
-            </table>
+                
+            </div>
                 
         </div>
     );

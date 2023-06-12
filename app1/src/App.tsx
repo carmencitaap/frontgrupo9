@@ -20,10 +20,15 @@ function App() {
           <div className="conteiner_groups">
             <Group />
           </div>
-       
-          <Evaluation />
-          <Test />
-          <Question />
+          <div className="conteiner_evaluations">
+            <Evaluation />
+            {/* <div className="conteiner_tests">
+              <Test />
+              <div className="conteiner_qustion">
+                <Question />
+              </div>
+            </div> */}
+          </div>
         </div>
       </div>
     </div>
