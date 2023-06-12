@@ -1,8 +1,8 @@
 import React from 'react';
 import './static/App.css';
 import { BrowserRouter as Router, Route, Routes} from 'react-router-dom';
-import AnswerTest from './components/AnswerTest';
 import EvaluationView from './components/EvaluationView';
+import QuestionView from './components/QuestionView';
 
 function App() {
   return (
@@ -12,16 +12,16 @@ function App() {
           <span className="home-title">Answer Evaluation </span>
         </div>
       </div> */}
-      <Routes>
+      {/* <Routes>
         <Route path="/" element={<AnswerTest />}/>
-      </Routes>
+      </Routes> */}
 
       <Routes>
             <Route path="/evaluation/:evaluationId" element={<EvaluationView />}></Route>
       </Routes>
-      {/* <Routes>
-        <Route path="/test/" element
-      </Routes> */}
+      <Routes>
+        <Route path="/test/:testId" element={<QuestionView/>}></Route>
+      </Routes>
     </Router>
   );
 }
