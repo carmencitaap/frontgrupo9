@@ -94,7 +94,12 @@ function GetQuestions(){
       };
       return (
         <div key={currentQuestion['id']} className='div-question'>
-            <div className='test-title'> <p className="t-title">Answering Test {currentQuestion['test']} </p></div>
+            <div className='test-title'>
+                <div className="t-title">Answering Test {currentQuestion['test']} </div> 
+                <hr />
+                <p className="question-status"> Question {currentQuestion['order']}/{questions.length} </p>
+            </div>
+            
             <h3 className="question-statement">{currentQuestion['question']}</h3>
             <p className="margin">Type: {currentQuestion['type_question']}</p>
             <form>
