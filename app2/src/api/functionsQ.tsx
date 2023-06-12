@@ -129,7 +129,7 @@ function GetQuestions(props: any){
             <h3 className="finished-title">Congratulations!</h3>
             <p>You finished the test.</p>
             {/* <GetScore /> */}
-            <img src="happy-gray-cat-celebration-party-dancing-9qc6ss84qhamexxg.gif" alt="Cat gif" className="image-size"></img>
+            <img src={process.env.PUBLIC_URL + '/assets/happy-gray-cat-celebration-party-dancing-9qc6ss84qhamexxg.gif'} alt="Cat gif" className="image-size" />
             <p className={finished ? '':'hide'}>Your score: {formattedScore}%</p>
           
           </div>

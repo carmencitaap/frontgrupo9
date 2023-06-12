@@ -4,8 +4,5 @@
   "start_url": ".",
   "display": "standalone",
   "theme_color": "#000000",
-  "background_color": "#ffffff",
-  "icons": [
-    {"src": "happy-gray-cat-celebration-party-dancing-9qc6ss84qhamexxg.gif", "type": "image/gif"}
-  ]
+  "background_color": "#ffffff"
 }
