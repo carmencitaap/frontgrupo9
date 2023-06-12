@@ -69,7 +69,7 @@ function GetQuestions(){
     };
 
     const handleFinish = (id: any) => {
-        window.location.replace("http://localhost:3000/finish");
+        window.location.replace("https://web2-p3-frontend-grupo9-production.up.railway.app/finish");
       };
       return (
         <div key={currentQuestion['id']} className='div-question'>
