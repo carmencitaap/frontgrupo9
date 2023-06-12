@@ -1,11 +1,11 @@
 import React from "react";
-import GetPerson from "../api/functionsPe";
+// import GetPerson from "../api/functionsPe";
 
-function Person() {
-    return (
-        <GetPerson />
-    );
+// function Person() {
+//     return (
+//         <GetPerson />
+//     );
 
-}
+// }
 
-export default Person;
+// export default Person;

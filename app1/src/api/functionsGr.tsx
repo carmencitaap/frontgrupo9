@@ -4,16 +4,17 @@ import Popup from 'reactjs-popup';
 import CreateButton from '../components/Button';
 
 const GROUP_ENDPOINT = "https://cavenpal.pythonanywhere.com/group/"
-const PERSON_ENDPOINT = "https://cavenpal.pythonanywhere.com/person/"
+const PERSON_ENDPOINT = "https://cavenpal.pythonanywhere.com/person/add_person/"
 
 
 function GetGroups() {
     const [groups, setGroups] = useState([]);
+    const [people, setPeople] = useState([]);
+
     const getGroups = () => {
         fetch(GROUP_ENDPOINT, {method:'GET'})
         .then((response) => response.json())
         .then(data => {
-            // console.log(data);
             setGroups(data)
           })
         .catch((err) => {
@@ -28,21 +29,17 @@ function GetGroups() {
         event.preventDefault();
       
         const name = (document.getElementById('name') as HTMLInputElement).value;
-        const number_of_people = (document.getElementById('np') as HTMLInputElement).value;
-
 
         await fetch(GROUP_ENDPOINT, {
             method: 'POST',
             body: JSON.stringify({
-                name: name,
-                number_of_people: number_of_people
+                name: name
             }),
             headers: {
                 'Content-type': 'application/json; charset=UTF-8',
             },
         })
-
-        console.log(name,number_of_people)
+        console.log(name)
     };
 
     const addPerson = async (id: any) => {
@@ -54,12 +51,13 @@ function GetGroups() {
             body: JSON.stringify({
                 full_name: full_name,
                 email: email,
-                group_id: id
+                group: id
             }),
             headers: {
                 'Content-type': 'application/json; charset=UTF-8',
             },
         })
+
         console.log(full_name,email)
     };
 
@@ -80,9 +78,28 @@ function GetGroups() {
         });
     };
 
+    useEffect(() => {
+        getGroups();
+      }, []);
+    
+    //const [people, setPeople] = useState([]);
+    const getPeople = async (id: any) => {
+        await fetch(GROUP_ENDPOINT+id+"/get_people/", {
+            method: 'GET',
+        })
+        .then((response) => response.json())
+        .then(data => {
+            setPeople(data.people)
+        })
+        .catch((err) => {
+            console.log(err.message)
+        })
+    }
+
+
     return (
             <div className="groups">
-                <div id="group-create">
+                <div id="group-create" className='group-create'>
                 <Popup trigger={<img src="plus-solid.svg" alt="" className="margin"/>}
                 position="right center">
                     <div className="popup">
@@ -91,14 +108,12 @@ function GetGroups() {
                             <label htmlFor="name">Name: </label>
                             <input type="text" id="name" name="name" /><br />
 
-                            <label htmlFor="np">Number of people: </label>
-                            <input type="text" id="np" name="np" /><br />
-
                             <CreateButton />
                         </form>
                     </div>
                 </Popup>
                 </div>
+                
 
             {groups.map(group => (
                 <div key={group['id']}>
@@ -123,6 +138,35 @@ function GetGroups() {
                             </form>
                         </div>
                     </Popup>
+
+                    
+                    <Popup  trigger={<img src="users-solid.svg" alt="" className ="popup2" />} position="right center" onOpen={() => getPeople(group['id'])}>
+                    <div className="popup">
+                        <span className="person-popup"> Persons of the group </span>
+                        {people.length > 0 ? (
+                        <table className="people">
+                            <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Full Name</th>
+                                <th>Email</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {people.map(person => (
+                                <tr key={person['id']}>
+                                <td>{person['id']}</td>
+                                <td>{person['full_name']}</td>
+                                <td>{person['email']}</td>
+                                </tr>
+                            ))}
+                            </tbody>
+                        </table>
+                        ) : (
+                        <p>No people available.</p>
+                        )}
+                    </div>
+                    </Popup>
                     <button className='delete-btn' onClick={()=> deleteGroup(group['id'])}> <img src="trash-full-svgrepo-com.svg" alt="trash" /></button>
                 </div>
             ))}
@@ -131,34 +175,3 @@ function GetGroups() {
 }
 
 export default GetGroups;
-
-
-    // const [people, setPeople] = useState([]);
-    // const getPeople = (groupId: string | undefined) => {
-    //     fetch("https://cavenpal.pythonanywhere.com/group/"+groupId+"/get_people")
-    //     .then((response) => response.json())
-    //     .then(data => {
-    //         console.log(data);
-    //         setPeople(data)
-    //     })
-    //     .catch((err) => {
-    //         console.log(err.message)
-    //     })
-    // }
-
-    // const [person, setPerson] = useState(null);
-    // const getPerson = (personId: string | undefined) =>{    
-    //     fetch("https://cavenpal.pythonanywhere.com/person/"+personId+"/",{method:'GET'})
-    //     .then((response) => response.json())
-    //     .then(data => {
-    //         console.log(data);
-    //         setPerson(data)
-    //     })
-    //     .catch((err) => {
-    //         console.log(err.message)
-    //     })
-    // }
-    
-    // useEffect(() => {
-    //     getPerson('1')
-    // }, [])

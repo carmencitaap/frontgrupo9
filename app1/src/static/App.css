@@ -46,7 +46,7 @@
 
 .container {
     display: grid;
-    grid-template-columns: 40% 60%;
+    grid-template-columns: 50% 50%;
 }
 
 .header {
@@ -81,14 +81,25 @@
     color: var(--dark-blue);
 }
 
+.container .conteiner_groups {
+    display: grid;
+    grid-gap: 10px;
+    width: 95%;
+    /* margin-top: 140px; */
+    margin: auto;
+}
+
+
 .groups {
     display: grid;
-    grid-template-columns: 180px 180px;
+    grid-template-columns: 50% 50%;
     grid-gap: 10px;
-    width: 50%;
-    /* margin-top: 140px; */
-    margin: 10px 0 15px 40px;
+    width: 90%;
+    margin-top: 20px; 
+    /*margin: auto;*/
+    align-items: center;
 }
+
 
 .groups .add-img{
     /* background-size: cover;
@@ -111,14 +122,25 @@
     font-weight: 500
 }
 .groups > div {
-    border-radius: 5%;
-    /* text-align: center; */
-    height: 150px;
-    padding: 10px;
-    font-weight: 350;
-    border: solid 1.5px var(--light-gray2);
-    /* https://getcssscan.com/css-box-shadow-examples */
-    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  width: 90%;
+  border-radius: 5%;
+  /*text-align: center;*/
+  height: 150px;
+  padding: 10px;
+  font-weight: 350;
+  border: solid 1.5px var(--light-gray2);
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.groups .group-create{
+  width: 90%;
+  border-radius: 5%;
+  text-align: center;
+  height: 150px;
+  padding: 10px;
+  font-weight: 350;
+  border: solid 1.5px var(--light-gray2);
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
 th,td {
@@ -153,6 +175,9 @@ tbody tr:hover {
 	padding: 30px 30px 15px 30px;
 	border: 3px solid #5e6a76;
     color: var(--gray);
+}
+.popup2 {
+  margin-left: 10px;
 }
 
 /* https://getcssscan.com/css-buttons-examples */

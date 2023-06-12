@@ -2,7 +2,7 @@ import React from 'react';
 import './static/App.css';
 import Group from './components/Group'
 import Evaluation from './components/Evaluation';
-import Person from './components/Person';
+//import Person from './components/Person';
 import Question from './components/Question'
 import Test from './components/Test';
 
@@ -17,10 +17,12 @@ function App() {
 
       <div className="main">
         <div className="container">
-          <Group />
-          <Person />
-          <Test />
+          <div className="conteiner_groups">
+            <Group />
+          </div>
+       
           <Evaluation />
+          <Test />
           <Question />
         </div>
       </div>

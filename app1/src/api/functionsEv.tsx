@@ -29,12 +29,12 @@ function GetEvaluations() {
         event.preventDefault();
         
         const name = (document.getElementById('name') as HTMLInputElement).value;
-        const group_id = (document.getElementById('group_id') as HTMLInputElement).value;
-        const numberOfQuestions = (document.getElementById('number_questions') as HTMLInputElement).value;
         const isActive = (document.getElementById('is_active') as HTMLInputElement).value;
         const dueDate = (document.getElementById('due_date') as HTMLInputElement).value;
+        const group = (document.getElementById('group') as HTMLInputElement).value;
         
         console.log(isActive);
+        //console.log(group);
         
         let activity;
         if (isActive === 'true'){
@@ -48,8 +48,7 @@ function GetEvaluations() {
             method: 'POST',
             body: JSON.stringify({
                 name: name,
-                group: group_id,
-                number_of_questions: numberOfQuestions,
+                group: group,
                 is_active: activity,
                 due_date: dueDate
             }),
@@ -57,7 +56,7 @@ function GetEvaluations() {
                 'Content-type': 'application/json; charset=UTF-8',
             },
         })
-        console.log("fetched:",name,group_id,numberOfQuestions,isActive)
+        console.log("fetched:",name, group, isActive)
     };
 
     return (
@@ -70,9 +69,6 @@ function GetEvaluations() {
                             <form onSubmit={addEvaluation}>
                                 <label htmlFor="name">Name: </label>
                                 <input type="text" id="name" name="name" /><br />
-
-                                <label htmlFor="group_id">Group: </label>
-                                <input type="text" id="group_id" name="group_id" /><br />
                                 
                                 <label htmlFor="is_active">Is Active?: </label>
                                 <select name="is_active" id="is_active">
@@ -82,6 +78,11 @@ function GetEvaluations() {
         
                                 <label htmlFor="due_date">Due Date: </label>
                                 <input type="date" id="due_date" name="due_date" /><br />
+
+                                <label htmlFor="group">Group: </label>
+                                <input type="text" id="group" name="group" /><br />
+
+
 
                                 <CreateButton />
                             </form>
@@ -94,6 +95,7 @@ function GetEvaluations() {
                         <th> Number </th>
                         <th> Name </th>
                         <th> Is active? </th>
+                        <th> Groups </th>
                     </tr>
                 </thead>
                 <tbody>
@@ -102,6 +104,7 @@ function GetEvaluations() {
                         <td> {evaluation['id']} </td>
                         <td> {evaluation['name']} </td>
                         <td> {evaluation['is_active'] ? "Yes": "No"} </td>
+                        <td> {evaluation['group']} </td>
                     </tr>
                     ))}
                 </tbody>
