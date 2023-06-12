@@ -84,20 +84,22 @@
 .container .conteiner_groups {
     display: grid;
     grid-gap: 10px;
-    width: 95%;
+    width: 90%;
     /* margin-top: 140px; */
     margin: auto;
+    align-items: center;
 }
 
 
 .groups {
     display: grid;
-    grid-template-columns: 50% 50%;
+    /*grid-template-columns: 1;*/
     grid-gap: 10px;
-    width: 90%;
+    width: 100%;
     margin-top: 20px; 
-    /*margin: auto;*/
     align-items: center;
+    margin: auto;
+    
 }
 
 
@@ -114,6 +116,7 @@
     border-radius: 5%;
     z-index: -1;
     /* box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px; */
+    
 }
 
 .group-title, .evaluations-title, .people-title, .question-title, .test-title {
@@ -125,24 +128,43 @@
   width: 90%;
   border-radius: 5%;
   /*text-align: center;*/
+  align-items: center;
   height: 150px;
   padding: 10px;
   font-weight: 350;
   border: solid 1.5px var(--light-gray2);
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  /*min-height: 150px;*/
 }
 
 .groups .group-create{
   width: 90%;
   border-radius: 5%;
+  align-items: center;
   text-align: center;
-  height: 150px;
+  height: 60px;
   padding: 10px;
   font-weight: 350;
   border: solid 1.5px var(--light-gray2);
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
+.groups .card-group{
+  display: grid;
+  grid-template-columns: 30% 70%;
+  align-items: center;
+  height: auto;
+  
+}
 
+.content-card-group{
+  margin-left: 10px;
+  margin-top: 10px;
+}
+
+.Name-group-card{
+  font-size: 25px;
+  font-weight: 500;
+}
 th,td {
     border: 1px solid var(--light-gray2);
     padding: 8px;
@@ -227,6 +249,8 @@ tbody tr:hover {
 }
 /* --------------------------------------------------------- */
 
+
+
 .margin {
     margin-left: 10px;
 }
@@ -240,7 +264,19 @@ tbody tr:hover {
   background-color: #ff3939;
   /* color: white; */
   float:right;
-  margin-top:50px;
+  /*margin-top:30px;*/
+  margin-right: 5px;
+  color:white;
+  border-radius: 15%;
+  padding:3px;
+  border: solid;
+}
+
+.delete-btnP {
+  background-color: #ff3939;
+  /* color: white; */
+  float:right;
+  align-items: center;
   color:white;
   border-radius: 15%;
   padding:3px;
