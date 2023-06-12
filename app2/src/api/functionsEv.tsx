@@ -18,7 +18,7 @@ function GetEvaluation(){
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(`${EVALUATION_ENDPOINT}${evaluationId}`);
+        const response = await fetch(EVALUATION_ENDPOINT+evaluationId+"/");
         if (!response.ok) {
           throw new Error('Failed to fetch evaluation');
         }
