@@ -1,5 +1,5 @@
 import React from 'react';
-import './static/App.css';
+import './static/App.scss';
 import { BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import EvaluationView from './components/EvaluationView';
 
