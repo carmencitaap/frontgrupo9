@@ -3,47 +3,58 @@ import { useParams } from 'react-router-dom';
 
 interface Test {
   id: number;
-  name: string;
   number_of_questions: number;
-  evaluation_id: number;
+  evaluation: number;
 }
 
 function GetTests() {
   const [tests, setTests] = useState<Test[]>([]);
   const { evaluationId } = useParams<{ evaluationId: string }>();
-  const TESTS_ENDPOINT = 'https://cavenpal.pythonanywhere.com/tests/';
+  const TESTS_ENDPOINT = 'https://cavenpal.pythonanywhere.com/test/';
 
-  const getTests = () => {
+  
+  useEffect (() => {
     fetch(TESTS_ENDPOINT)
     .then((response) => response.json())
     .then(data => {
         console.log(data);
-        const numEvaluationId = Number(evaluationId)
-        const testsWithEvaluationId = data.filter((test: Test) => test.evaluation_id === numEvaluationId);
-        setTests(testsWithEvaluationId)
+        setTests(data)
       })
     .catch((err) => {
         console.log(err.message)
     })
-  }
-  
-  useEffect (() => {
-    getTests()
-  }, [])
+  }, [evaluationId])
+
 
   if (tests.length === 0) {
     return <p>Loading...</p>;
   }
 
+
+  const handleClick = (id: any) => {
+    window.location.replace(`http://localhost:3000/test/${id}`);
+  };
+
+
   return (
     <div>
-      {tests.map((test) => (
-        <div key={test.id}>
-          <h2>Test ID: {test.id}</h2>
-          <h2>Test Name: {test.name}</h2>
-          <p>Number of Questions: {test.number_of_questions}</p>
-        </div>
-      ))}
+      {tests.map((test) => {
+
+        if (test.evaluation === Number(evaluationId)) {
+          return (
+            <div>
+              <div key={test.id} className='margin hide'>
+                <span>Test Number {test.id}</span> <br />
+                <span>Evaluation id: {test.evaluation}</span> <br/>
+                <span>Number of Questions: {test.number_of_questions}</span>
+              </div>
+
+              <button key='start-button' className="button-21 margin" onClick={()=>handleClick(test.id)}> Start </button>
+            </div>
+          );
+        }
+        return null;
+      })}
     </div>
   );
 }
