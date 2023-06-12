@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+// import { useParams } from 'react-router-dom';
 
 interface Question {
     id: number;
@@ -13,13 +13,13 @@ interface Question {
   }
 const QUESTION_ENDPOINT = "https://cavenpal.pythonanywhere.com/question/add_question/"; 
 
-function GetQuestions(){
+function GetQuestions(props: any){
     const [questions, setQuestions] = useState<Question[]>([]);
     const [test_id, setTestID] = useState();
     const [currentQuestionIndex, setCurrentQuestionIndex] = useState<number>(0);
-    const [score, setScore] = useState<number>(1);
-    const { testId } = useParams<{ testId: string }>();
-    const QUESTIONS_ENDPOINT = `https://cavenpal.pythonanywhere.com/test/${testId}/get_questions/`
+    const [finished,setFinished] = useState(false)
+    const [score, setScore] = useState<number>(0);
+    const QUESTIONS_ENDPOINT = `https://cavenpal.pythonanywhere.com/test/${props.testId}/get_questions/`
 
     useEffect (() => {
         fetch(QUESTIONS_ENDPOINT)
@@ -32,7 +32,7 @@ function GetQuestions(){
         .catch((err) => {
             console.log(err.message)
         })
-      }, [QUESTIONS_ENDPOINT, testId])
+      }, [QUESTIONS_ENDPOINT, props.testId])
 
       const handleNextQuestion = () => {
         const answer = (document.getElementById('correct-answer') as HTMLInputElement).value;
@@ -53,7 +53,7 @@ function GetQuestions(){
       const currentQuestion = questions[currentQuestionIndex];
       console.log("holaaa", questions);
 
-      if (test_id !== Number(testId)) {
+      if (test_id !== Number(props.testId)) {
         return <p>Test invalid</p>;
       }
       
@@ -78,7 +78,7 @@ function GetQuestions(){
         console.log("PREGUNTA CREADA",order,question,correct_answer,type_question,difficulty,tags,test);
     };
 
-    const handleFinish = (id: any) => {
+    const handleFinish = () => {
         const answer = (document.getElementById('correct-answer') as HTMLInputElement).value;
         if (answer === currentQuestion?.correct_answer) {
             console.log("entró")
@@ -86,37 +86,53 @@ function GetQuestions(){
             console.log(score)
             console.log("length", questions.length)
         }
-        console.log("out", score)
-        const percentageScore = (score/questions.length)*100;
-        console.log(percentageScore)
-        console.log("length",questions.length)
-        window.location.replace(`https://web2-p3-frontend-grupo9-production.up.railway.app/finish/${percentageScore}`);
+      };
+      const percentageScore = (score/questions.length)*100;
+      const formattedScore = percentageScore.toFixed(2);
+      
+      const handleClick = () => {
+        console.log("antes",finished)
+        setFinished(true);
+        console.log("despues",finished);
       };
       return (
-        <div key={currentQuestion['id']} className='div-question'>
-            <div className='test-title'>
-                <div className="t-title">Answering Test {currentQuestion['test']} </div> 
-                <hr />
-                <p className="question-status"> Question {currentQuestion['order']}/{questions.length} </p>
-            </div>
-            
-            <h3 className="question-statement">{currentQuestion['question']}</h3>
-            <p className="margin">Type: {currentQuestion['type_question']}</p>
-            <form>
-                <label htmlFor="correct-answer" className="answer margin"> Answer: </label> <br/>
-                <textarea id="correct-answer" name="correct-answer" className='answer-box margin' cols={40} rows={8}/><br />
-            </form>
-            <p className="margin">Difficulty: {currentQuestion['difficulty']}</p>
-            {currentQuestionIndex < questions.length -1 && (
-                <button className="button-18 margin"
-                onClick={
-                    (event) => {handleNextQuestion(); 
-                        createQuestion(currentQuestion['order'],currentQuestion['question'],currentQuestion['difficulty'],currentQuestion['type_question'],currentQuestion['tags_question'],currentQuestion['test'])
-                    }}> Next </button>
-            )}
-            {currentQuestionIndex === questions.length -1 && (
-                <button className="button-18 margin" onClick={handleFinish}> Finish </button>
-            )}
+        <div>
+          <div key={currentQuestion['id']} className={finished ? 'hide':'div-question'}>
+              <div className='test-title'>
+                  <div className="t-title">Answering Test {currentQuestion['test']} </div> 
+                  <hr />
+                  <p className="question-status"> Question {currentQuestion['order']}/{questions.length} </p>
+              </div>
+              
+              <h3 className="question-statement">{currentQuestion['question']}</h3>
+              <p className="margin">Type: {currentQuestion['type_question']}</p>
+              <form>
+                  <label htmlFor="correct-answer" className="answer margin"> Answer: </label> <br/>
+                  <textarea id="correct-answer" name="correct-answer" className='answer-box margin' cols={40} rows={8}/><br />
+              </form>
+              <p className="margin">Difficulty: {currentQuestion['difficulty']}</p>
+              {currentQuestionIndex < questions.length -1 && (
+                  <button className="button-18 margin"
+                  onClick={
+                      (event) => {handleNextQuestion(); 
+                          createQuestion(currentQuestion['order'],currentQuestion['question'],currentQuestion['difficulty'],currentQuestion['type_question'],currentQuestion['tags_question'],currentQuestion['test'])
+                      }}> Next </button>
+              )}
+
+              
+              {currentQuestionIndex === questions.length -1 && (
+                  <button className="button-18 margin" onClick = {(event) => {handleClick(); handleFinish()}}> Finish </button>
+              )}
+          </div>
+
+          <div className={finished ? "finished": 'hide'}>
+            <h3 className="finished-title">Congratulations!</h3>
+            <p>You finished the test.</p>
+            {/* <GetScore /> */}
+            <img src={process.env.PUBLIC_URL + '/assets/happy-gray-cat-celebration-party-dancing-9qc6ss84qhamexxg.gif'} alt="Cat gif" className="image-size" />
+            <p className={finished ? '':'hide'}>Your score: {formattedScore}%</p>
+          
+          </div>
         </div>
         )
     
