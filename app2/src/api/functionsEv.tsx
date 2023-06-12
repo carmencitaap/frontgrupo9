@@ -39,16 +39,22 @@ function GetEvaluation(){
 
   }, [evaluationId]);
 
-  console.log("holaaa",evaluation)
-
   if (evaluation === null) {
     return <p>Loading...</p>;
   }
-
+ 
   return (
-    <div>
-      <h2 key={evaluationId}>Evaluation Name: {evaluation.name}</h2>
-      <p>Instrucciones: lalalalala</p>
+    <div >
+      <div key={evaluationId} className='eval-title'>
+        <span className='evtitle'> {evaluation.name} </span>
+      </div>
+      
+      <div className='instructions'>
+        <h3> Instructions: </h3>
+        <p> You have to answer one question at a time. </p>
+        <p> Due date is {evaluation.due_date}.</p>
+        <p> Press the button "Start" to begin answering the test. </p>
+      </div>
     </div>
   )
 }
