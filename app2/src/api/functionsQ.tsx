@@ -38,7 +38,7 @@ function GetQuestions(){
       };
 
       if (questions.length === 0) {
-        return <p>Loading...</p>;
+        return <p className='margin'>Loading...</p>;
       }
       const currentQuestion = questions[currentQuestionIndex];
       console.log("holaaa", questions);
@@ -82,14 +82,14 @@ function GetQuestions(){
             </form>
             <p className="margin">Difficulty: {currentQuestion['difficulty']}</p>
             {currentQuestionIndex < questions.length -1 && (
-                <button className="button-21 margin"
+                <button className="button-18 margin"
                 onClick={
                     (event) => {handleNextQuestion(); 
                         createQuestion(currentQuestion['order'],currentQuestion['question'],currentQuestion['difficulty'],currentQuestion['type_question'],currentQuestion['tags_question'],currentQuestion['test'])
                     }}> Next </button>
             )}
             {currentQuestionIndex === questions.length -1 && (
-                <button className="button-21 margin" onClick={handleFinish}> Finish </button>
+                <button className="button-18 margin" onClick={handleFinish}> Finish </button>
             )}
         </div>
         )

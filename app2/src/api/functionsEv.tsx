@@ -40,13 +40,13 @@ function GetEvaluation(){
   }, [evaluationId]);
 
   if (evaluation === null) {
-    return <p>Loading...</p>;
+    return <p className='margin'>Loading...</p>;
   }
  
   return (
     <div >
       <div key={evaluationId} className='eval-title'>
-        <span className='evtitle'> {evaluation.name} </span>
+        <div className='evtitle'> {evaluation.name} </div>
       </div>
       
       <div className='instructions'>

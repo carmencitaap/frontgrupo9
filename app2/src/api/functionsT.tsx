@@ -28,7 +28,7 @@ function GetTests() {
 
 
   if (tests.length === 0) {
-    return <p>Loading...</p>;
+    return <p className='margin'>Loading...</p>;
   }
 
 
@@ -62,7 +62,7 @@ function GetTests() {
                 <span>Number of Questions: {test.number_of_questions}</span>
               </div>
                 {test.master_test && (
-                    <button key='start-button' className="button-21 margin" onClick = {(event) => {handleClick(test.id); createTest(test.evaluation)}}>Start </button>
+                    <button key='start-button' className="button-18 margin" onClick = {(event) => {handleClick(test.id); createTest(test.evaluation)}}>Start </button>
                 )}
             </div>
           );
