@@ -11,13 +11,13 @@ interface Question {
     order: number;
     test: number;
   }
-const QUESTION_ENDPOINT = "https://cavenpal.pythonanywhere.com/question/add_question"; 
+const QUESTION_ENDPOINT = "https://cavenpal.pythonanywhere.com/question/add_question/"; 
 
 function GetQuestions(){
     const [questions, setQuestions] = useState<Question[]>([]);
     const [test_id, setTestID] = useState();
     const [currentQuestionIndex, setCurrentQuestionIndex] = useState<number>(0);
-    const [score, setScore] = useState<number>(0);
+    const [score, setScore] = useState<number>(1);
     const { testId } = useParams<{ testId: string }>();
     const QUESTIONS_ENDPOINT = `https://cavenpal.pythonanywhere.com/test/${testId}/get_questions/`
 
@@ -40,6 +40,7 @@ function GetQuestions(){
           setScore((prevScore) => {
             const updatedScore = prevScore + 1;
             console.log("score", updatedScore);
+            console.log("length", questions.length)
             return updatedScore;
           });
         }
@@ -80,11 +81,16 @@ function GetQuestions(){
     const handleFinish = (id: any) => {
         const answer = (document.getElementById('correct-answer') as HTMLInputElement).value;
         if (answer === currentQuestion?.correct_answer) {
+            console.log("entró")
             setScore((prevScore) => (prevScore + 1));
             console.log(score)
+            console.log("length", questions.length)
         }
+        console.log("out", score)
         const percentageScore = (score/questions.length)*100;
-        window.location.replace(`http://localhost:3000/finish/${percentageScore}`);
+        console.log(percentageScore)
+        console.log("length",questions.length)
+        window.location.replace(`https://web2-p3-frontend-grupo9-production.up.railway.app/finish/${percentageScore}`);
       };
       return (
         <div key={currentQuestion['id']} className='div-question'>
