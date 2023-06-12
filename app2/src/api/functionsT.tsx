@@ -5,6 +5,7 @@ interface Test {
   id: number;
   number_of_questions: number;
   evaluation: number;
+  master_test: boolean;
 }
 
 function GetTests() {
@@ -35,11 +36,23 @@ function GetTests() {
     window.location.replace(`http://localhost:3000/test/${id}`);
   };
 
+  const createTest = async (id: any) => {
+    await fetch(TESTS_ENDPOINT, {
+        method: 'POST',
+        body: JSON.stringify({
+            evaluation: id
+        }),
+        headers: {
+            'Content-type': 'application/json; charset=UTF-8',
+        },
+    })
+    console.log("TEST CREATED",id)
+};
+    
 
   return (
     <div>
       {tests.map((test) => {
-
         if (test.evaluation === Number(evaluationId)) {
           return (
             <div>
@@ -48,8 +61,9 @@ function GetTests() {
                 <span>Evaluation id: {test.evaluation}</span> <br/>
                 <span>Number of Questions: {test.number_of_questions}</span>
               </div>
-
-              <button key='start-button' className="button-21 margin" onClick={()=>handleClick(test.id)}> Start </button>
+                {test.master_test && (
+                    <button key='start-button' className="button-21 margin" onClick = {(event) => {handleClick(test.id); createTest(test.evaluation)}}>Start </button>
+                )}
             </div>
           );
         }
