@@ -237,6 +237,10 @@
     margin-top:2px;
     margin-bottom: 5px;
   }
+
+  .due-date {
+    color:white;
+  }
 }
 
 .show {
