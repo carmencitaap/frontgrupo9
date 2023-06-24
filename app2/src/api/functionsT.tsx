@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import GetQuestions from './functionsQ';
 
 interface Test {
   id: number;
@@ -8,14 +7,13 @@ interface Test {
   evaluation: number;
   master_test: boolean;
 }
-// fetch a evluation con ese id
-// const TESTS_ENDPOINT = 'https://cavenpal.pythonanywhere.com/evaluation/'
+
 function GetTests() {
   const [tests, setTests] = useState<Test[]>([]);
   const { evaluationId } = useParams<{ evaluationId: string }>();
   const TESTS_ENDPOINT = 'https://cavenpal.pythonanywhere.com/test/';
-  const [started,setStarted] = useState(false);
-  // console.log("aaantes",started)
+
+  
   useEffect (() => {
     fetch(TESTS_ENDPOINT)
     .then((response) => response.json())
@@ -34,10 +32,8 @@ function GetTests() {
   }
 
 
-  const handleClick = () => {
-    console.log("antes",started)
-    setStarted(true);
-    console.log("despues",started);
+  const handleClick = (id: any) => {
+    window.location.replace(`http://localhost:3000/test/${id}`);
   };
 
   const createTest = async (id: any) => {
@@ -56,25 +52,17 @@ function GetTests() {
 
   return (
     <div>
-      <div className={started ? 'hide' : 'instructions'}>
-        <h3> Instructions: </h3>
-        <p> You have to answer one question at a time. </p>
-        
-        <p> Press the button "Start" to begin answering the test. </p>
-      </div>
-
-
       {tests.map((test) => {
         if (test.evaluation === Number(evaluationId)) {
           return (
             <div>
+              <div key={test.id} className='margin hide'>
+                <span>Test Number {test.id}</span> <br />
+                <span>Evaluation id: {test.evaluation}</span> <br/>
+                <span>Number of Questions: {test.number_of_questions}</span>
+              </div>
                 {test.master_test && (
-                  <div>
-                    <button key='start-button' className={started ? "hide" : "button-18 margin"} onClick = {(event) => {handleClick(); createTest(test.evaluation)}}>Start</button>
-                    <div className={started ? "":'hide'}>
-                      <GetQuestions testId={test.id} />
-                    </div>
-                  </div>
+                    <button key='start-button' className="button-18 margin" onClick = {(event) => {handleClick(test.id); createTest(test.evaluation)}}>Start </button>
                 )}
             </div>
           );

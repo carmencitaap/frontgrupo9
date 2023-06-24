@@ -47,7 +47,13 @@ function GetEvaluation(){
     <div >
       <div key={evaluationId} className='eval-title'>
         <div className='evtitle'> {evaluation.name} </div>
-        <p className='due-date'> Due date is {evaluation.due_date}.</p>
+      </div>
+      
+      <div className='instructions'>
+        <h3> Instructions: </h3>
+        <p> You have to answer one question at a time. </p>
+        <p> Due date is {evaluation.due_date}.</p>
+        <p> Press the button "Start" to begin answering the test. </p>
       </div>
     </div>
   )
