@@ -33,7 +33,7 @@ function GetTests() {
 
 
   const handleClick = (id: any) => {
-    window.location.replace(`https://web2-p3-frontend-grupo9-production.up.railway.app/test/${id}`);
+    window.location.replace(`http://localhost:3000/test/${id}`);
   };
 
   const createTest = async (id: any) => {
