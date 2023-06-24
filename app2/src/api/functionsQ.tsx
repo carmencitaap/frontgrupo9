@@ -90,7 +90,7 @@ function GetQuestions(){
         const percentageScore = (score/questions.length)*100;
         console.log(percentageScore)
         console.log("length",questions.length)
-        window.location.replace(`http://localhost:3000/finish/${percentageScore}`);
+        window.location.replace(`https://web2-p3-frontend-grupo9-production.up.railway.app/finish/${percentageScore}`);
       };
       return (
         <div key={currentQuestion['id']} className='div-question'>
