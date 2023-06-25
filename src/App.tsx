@@ -15,12 +15,7 @@ function App() {
       </div> */}
       <Routes>
         <Route path="/finish/:score" element={<FinishedTest />}/>
-      </Routes>
-
-      <Routes>
-            <Route path="/evaluation/:evaluationId" element={<EvaluationView />}></Route>
-      </Routes>
-      <Routes>
+        <Route path="/evaluation/:evaluationId" element={<EvaluationView />}></Route>
         <Route path="/test/:testId" element={<QuestionView/>}></Route>
       </Routes>
     </Router>

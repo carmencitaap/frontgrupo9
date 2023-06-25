@@ -1,0 +1,2 @@
+/evaluation/:id/*    /index.html   200
+/test/:id/*    /index.html   200

@@ -33,7 +33,7 @@ function GetTests() {
 
 
   const handleClick = (id: any) => {
-    window.location.replace(`https://main--dapper-caramel-e0264c.netlify.app/test/${id}`);
+    window.location.replace(`https://dapper-caramel-e0264c.netlify.app/test/${id}`);
   };
 
   const createTest = async (id: any) => {
