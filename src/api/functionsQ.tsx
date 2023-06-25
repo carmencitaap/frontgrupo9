@@ -90,7 +90,7 @@ function GetQuestions(){
         const percentageScore = (score/questions.length)*100;
         console.log(percentageScore)
         console.log("length",questions.length)
-        window.location.replace(`https://dapper-caramel-e0264c.netlify.app/finish/${percentageScore}`);
+        window.location.replace(`https://main--dapper-caramel-e0264c.netlify.app/finish/${percentageScore}`);
       };
       return (
         <div key={currentQuestion['id']} className='div-question'>
