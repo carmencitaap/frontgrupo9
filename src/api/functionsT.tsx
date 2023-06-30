@@ -37,10 +37,12 @@ function GetTests() {
   };
 
   const createTest = async (id: any) => {
+    const email = (document.getElementById('email') as HTMLInputElement).value;
     await fetch(TESTS_ENDPOINT, {
         method: 'POST',
         body: JSON.stringify({
-            evaluation: id
+            evaluation: id,
+            email: email
         }),
         headers: {
             'Content-type': 'application/json; charset=UTF-8',
@@ -60,9 +62,16 @@ function GetTests() {
                 <span>Test Number {test.id}</span> <br />
                 <span>Evaluation id: {test.evaluation}</span> <br/>
                 <span>Number of Questions: {test.number_of_questions}</span>
+                
               </div>
                 {test.master_test && (
+                  <div>
+                    <form>
+                        <label htmlFor="email" className="answer margin"> Please enter your email: </label>
+                        <input type="text" id="email" name="email" /><br />
+                    </form>
                     <button key='start-button' className="button-18 margin" onClick = {(event) => {handleClick(test.id); createTest(test.evaluation)}}>Start </button>
+                  </div>
                 )}
             </div>
           );
