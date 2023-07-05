@@ -1,7 +1,7 @@
-import React, {useState , useEffect} from 'react';
+import React from 'react';
 import { useParams } from 'react-router-dom';
 
-const ANSWEREDTEST_ENDPOINT = "https://cavenpal.pythonanywhere.com/answeredtest/";
+// const ANSWEREDTEST_ENDPOINT = "https://cavenpal.pythonanywhere.com/answeredtest/";
 
 function GetScore() {
     const { score } = useParams();
