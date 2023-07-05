@@ -1,5 +1,5 @@
 import React from 'react';
-import './static/App.css';
+import './static/App.scss';
 import { BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import EvaluationView from './components/EvaluationView';
 import QuestionView from './components/QuestionView';
@@ -15,8 +15,13 @@ function App() {
       </div> */}
       <Routes>
         <Route path="/finish/:score" element={<FinishedTest />}/>
-        <Route path="/evaluation/:evaluationId" element={<EvaluationView />}></Route>
-        <Route path="/test/:testId" element={<QuestionView/>}></Route>
+      </Routes>
+
+      <Routes>
+            <Route path="/evaluation/:evaluationId/person/:personId" element={<EvaluationView />}></Route>
+      </Routes>
+      <Routes>
+        <Route path="/test/:testId/person/:personId/color/:color" element={<QuestionView/>}></Route>
       </Routes>
     </Router>
   );

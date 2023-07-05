@@ -4,45 +4,54 @@ import { useParams } from 'react-router-dom';
 interface Test {
   id: number;
   number_of_questions: number;
-  evaluation: number;
   master_test: boolean;
 }
 
-function GetTests() {
-  const [tests, setTests] = useState<Test[]>([]);
+interface GetTestsProps {
+  testId: number;
+  personId: any; // Update the type of personId prop
+  color : string;
+}
+
+function GetTests({ testId, personId, color }: GetTestsProps) {
+
+  const [test, setTest] = useState<Test>({} as Test);
+  const [colorTest, setColorTest] = useState('' as string);
   const { evaluationId } = useParams<{ evaluationId: string }>();
   const TESTS_ENDPOINT = 'https://cavenpal.pythonanywhere.com/test/';
+  const ANSWEREDTEST_ENDPOINT = "https://cavenpal.pythonanywhere.com/answeredtest/";
 
-  
+
   useEffect (() => {
-    fetch(TESTS_ENDPOINT)
+    fetch(TESTS_ENDPOINT+testId+"/")
     .then((response) => response.json())
     .then(data => {
         console.log(data);
-        setTests(data)
+        setTest(data)
+        setColorTest(data.color) 
       })
     .catch((err) => {
         console.log(err.message)
     })
-  }, [evaluationId])
+  }, [evaluationId, testId])
 
 
-  if (tests.length === 0) {
+  if (test === null) {
     return <p className='margin'>Loading...</p>;
   }
 
 
-  const handleClick = (id: any) => {
-    window.location.replace(`https://dapper-caramel-e0264c.netlify.app/test/${id}`);
+  const handleClick = (testId: any, personId:any, color:any) => {
+    window.location.replace(`https://dapper-caramel-e0264c.netlify.app/test/${testId}/person/${personId}/color/${color}`);
   };
 
-  const createTest = async (id: any) => {
-    const email = (document.getElementById('email') as HTMLInputElement).value;
-    await fetch(TESTS_ENDPOINT, {
+  const createAnsweredTest = async (id: any) => {
+    await fetch(ANSWEREDTEST_ENDPOINT, {
         method: 'POST',
         body: JSON.stringify({
+            test: testId,
             evaluation: id,
-            email: email
+            person: personId,
         }),
         headers: {
             'Content-type': 'application/json; charset=UTF-8',
@@ -50,34 +59,19 @@ function GetTests() {
     })
     console.log("TEST CREATED",id)
 };
-    
+
 
   return (
     <div>
-      {tests.map((test) => {
-        if (test.evaluation === Number(evaluationId)) {
-          return (
-            <div>
-              <div key={test.id} className='margin hide'>
-                <span>Test Number {test.id}</span> <br />
-                <span>Evaluation id: {test.evaluation}</span> <br/>
-                <span>Number of Questions: {test.number_of_questions}</span>
-                
-              </div>
-                {test.master_test && (
-                  <div>
-                    <form>
-                        <label htmlFor="email" className="answer margin"> Please enter your email: </label>
-                        <input type="text" id="email" name="email" /><br />
-                    </form>
-                    <button key='start-button' className="button-18 margin" onClick = {(event) => {handleClick(test.id); createTest(test.evaluation)}}>Start </button>
-                  </div>
-                )}
-            </div>
-          );
-        }
-        return null;
-      })}
+      <div>
+        <div key={testId} className='margin hide'>
+          <span>Test Number {testId}</span> <br />
+          <span>Evaluation id: {evaluationId}</span> <br/>
+          <span>Number of Questions: {test.number_of_questions}</span>
+        </div>
+          
+          <button key='start-button' className="button-18 margin" onClick = {(event) => {handleClick(testId,personId,color); createAnsweredTest(evaluationId)}}>Start </button>
+      </div>
     </div>
   );
 }

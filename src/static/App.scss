@@ -17,7 +17,13 @@ $light-gray2: #e3e3e3;
     color: white;
     font-weight: 500;
   } */
-  
+  .answer-box {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 200px;
+    margin-bottom: 10px;
+  }
   .home-title {
     font-size: 70px;
     margin-left: .2em;
@@ -112,6 +118,7 @@ $light-gray2: #e3e3e3;
   .button-18 {
     align-items: center;
     background-color: #0A66C2;
+    margin-bottom: 50px;
     border: 0;
     border-radius: 100px;
     box-sizing: border-box;
@@ -124,8 +131,8 @@ $light-gray2: #e3e3e3;
     justify-content: center;
     line-height: 20px;
     max-width: 480px;
-    min-height: 40px;
-    min-width: 0px;
+    min-height: 50px;
+    min-width: 150px;
     overflow: hidden;
     padding: 0px;
     padding-left: 20px;
@@ -195,21 +202,52 @@ $light-gray2: #e3e3e3;
       margin-top: 5px;
       margin-left: 5px;
     }
-  
+    
     .begin {
       margin-top: 150px;
     }
+
+    }
     .div-question {
       width:100%;
+      max-width: 400px;
+      
+    .content_test {
+      margin-top: 10px;
+      max-width: 380px;
     }
+    
     .question-statement {
-      width: 100%;
-      background-color: #7cd1e1;
-      height: 45px;
-      font-size: 100%;
+      width: auto;
+      background-color: #707e7d;
+      color: black;
+      height: 100px;
+      max-width: 380px;
+      font-size: 30px;
       padding: 10px;
-      margin-top: 100px;
+      margin: auto;
+      height: auto;
+      justify-content: center;
+      text-align: center;
+      align-items: center;
+      margin-top: 15px;
+      border-top: #000000;
+      justify-content: center;
+      overflow-wrap: break-word;
     }
+      
+    .text-center-ty{
+      color: #000000;
+      font-size: 60%;
+      margin-left: 10px;
+      
+    }
+
+   .text-center-dif{
+    color: #000000;
+    font-size: 60%;
+    margin-right: 10px;
+   }
   
     .test-title {
       background-color: #073979;
@@ -220,6 +258,8 @@ $light-gray2: #e3e3e3;
       position: fixed;
       top:0;
       text-align: center;
+      border-radius: 5px;
+      border-color: #000000;
     }
     
     .t-title {
@@ -227,7 +267,7 @@ $light-gray2: #e3e3e3;
       margin-bottom: 5px;
     }
     .question-status {
-      font-size: 18px;
+      font-size: 20px;
       margin-left: 0px;
       margin:0
     }
@@ -246,5 +286,110 @@ $light-gray2: #e3e3e3;
     display: block;
   }
   
+  .formpreguntas{
+    margin-top: 10px;
+  }
+
+  .form-check {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    justify-content: center;
+    margin-top: 20px;
+    margin-bottom: 25px;
+  }
+
+  .answer-box.numeric-input {
+    width: 200px;
+    height: 40px;
+    padding: 8px;
+    border: 1px solid #ccc;
+    margin-top: 35px;
+    border-radius: 4px;
+    font-size: 16px;
+    box-sizing: border-box;
+    margin-bottom: 20px;
+  }
+  .input{
+    transition: background-color 0.5s ease-out;
+  }
+  .input:optional {
+    border-color: gray;
+  }
   
+  .form-check2{
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+  
+  .form-check-input {
+    margin-right: 0.5rem;
+  }
+  
+  .form-check-label {
+    margin-bottom: 0;
+    color: #000000;
+    font-weight: 350;
+    font-size: 25px;
+  }
+  
+  .form-check-input:checked {
+    background-color: #000000;
+    border-color: #000000;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .form-check-input:checked::before {
+    position: relative;
+    display: block;
+    width: 1rem;
+    height: 1rem;
+    content: "";
+    background-color: #000000;
+    border: 2px solid #000000;
+    border-radius: 50%;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .form-check {
+    margin-top: 10px;
+  }
+  
+  .form-check-input {
+    margin-top: 0.25rem;
+    margin-right: 0.5rem;
+    position: relative;
+    flex-shrink: 0;
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+  
+  .form-check-label {
+    margin-bottom: 0;
+    color: #000;
+  }
+  
+  /* Estilo para resaltar la opción seleccionada */
+  .form-check {
+    margin-top: 10px;
+  }
+  
+  .form-check-input {
+    margin-top: 0.25rem;
+    margin-right: 0.5rem;
+    position: relative;
+    flex-shrink: 0;
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+  
+  .form-check-label {
+    margin-bottom: 0;
+    color: #000;
+  }
   

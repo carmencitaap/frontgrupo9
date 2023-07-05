@@ -8,7 +8,7 @@ function EvaluationView() {
   return (
     <div className='begin'>
       <GetEvaluation />
-      <AnswerTest />
+      {/* <AnswerTest /> */}
       {/* <GetQuestions /> */}
     </div>
     

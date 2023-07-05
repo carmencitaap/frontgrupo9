@@ -1,8 +1,15 @@
 import React from "react";
 import GetTests from "../api/functionsT";
 
+
 function AnswerTest() {
-    return <GetTests />
+
+
+    
+
+    return <div>d
+        
+    </div>
 }
 
 export default AnswerTest;

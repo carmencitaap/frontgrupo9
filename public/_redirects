@@ -1,3 +1,2 @@
 /evaluation/:id/*    /index.html   200
 /test/:id/*    /index.html   200
-/finish/:percentageScore/* /index.html 200
