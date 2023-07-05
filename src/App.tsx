@@ -14,7 +14,7 @@ function App() {
         </div>
       </div> */}
       <Routes>
-        <Route path="/finish/:score" element={<FinishedTest />}/>
+        <Route path="/finish/" element={<FinishedTest />}/>
       </Routes>
 
       <Routes>
