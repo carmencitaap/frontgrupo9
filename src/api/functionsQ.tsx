@@ -56,7 +56,6 @@ function GetQuestions(){
     const [currentQuestionIndex, setCurrentQuestionIndex] = useState<number>(0);
     //const [score, setScore] = useState<number>(1);
     const { testId } = useParams<{ testId: string }>();
-    const [selectedOptionTF, setSelectedOptionTF] = useState('');
     const QUESTIONS_ENDPOINT = `https://cavenpal.pythonanywhere.com/test/${testId}/get_questions/`
 
 
@@ -270,6 +269,7 @@ function GetQuestions(){
         };
 
         useEffect(() => {
+          // eslint-disable-next-line array-callback-return
           questions.map((question) => {
             if (question.type_question === "true-false"){
               getTrueFalse(question.id)

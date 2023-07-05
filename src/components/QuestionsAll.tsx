@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
-const QUESTION_ENDPOINT = "https://cavenpal.pythonanywhere.com/question/add_question/"; 
 
 interface Question {
     id: number;
@@ -14,9 +13,9 @@ interface Question {
   }
 
 function QuestionsAll() {
-    const [questions, setQuestions] = useState<Question[]>([]);
+    const [, setQuestions] = useState<Question[]>([]);
 
-    const [test_id, setTestID] = useState();
+    const [, setTestID] = useState();
     const { testId } = useParams<{ testId: string }>();
     const QUESTIONS_ENDPOINT = `https://cavenpal.pythonanywhere.com/test/${testId}/get_questions/`
 

@@ -16,7 +16,7 @@ interface GetTestsProps {
 function GetTests({ testId, personId, color }: GetTestsProps) {
 
   const [test, setTest] = useState<Test>({} as Test);
-  const [colorTest, setColorTest] = useState('' as string);
+  const [, setColorTest] = useState('' as string);
   const { evaluationId } = useParams<{ evaluationId: string }>();
   const TESTS_ENDPOINT = 'https://cavenpal.pythonanywhere.com/test/';
   const ANSWEREDTEST_ENDPOINT = "https://cavenpal.pythonanywhere.com/answeredtest/";

@@ -6,11 +6,10 @@ function GetEvaluation() {
   const [evaluation, setEvaluation] = useState<Evaluation | null>(null);
   const [group, setGroup] = useState<Group | null>(null);
   const [people, setPeople] = useState<Person[]>([]);
-  const [selectedPerson, setSelectedPerson] = useState<number | null>(null);
+  const [, setSelectedPerson] = useState<number | null>(null);
 
   const { evaluationId } = useParams();
   const { personId} = useParams();
-  const { color } = useParams();
   const EVALUATION_ENDPOINT = `https://cavenpal.pythonanywhere.com/evaluation/${evaluationId}/`;
   const GROUP_ENDPOINT = 'https://cavenpal.pythonanywhere.com/group/';
   const PEOPLE_ENDPOINT = 'https://cavenpal.pythonanywhere.com/person/';
@@ -65,7 +64,7 @@ function GetEvaluation() {
     };
 
     fetchEvaluation();
-  }, [evaluationId]);
+  }, [EVALUATION_ENDPOINT, evaluationId]);
 
   useEffect(() => {
     const fetchGroup = async () => {
