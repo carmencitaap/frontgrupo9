@@ -268,7 +268,7 @@ function GetQuestions(){
           // console.log(percentageScore)
           console.log("length",questions.length)
 
-          window.location.replace(`https://dapper-caramel-e0264c.netlify.app/finish/${percentageScore}/person/{person_id}/`);
+          window.location.replace(`https://dapper-caramel-e0264c.netlify.app/finish/${percentageScore}/person/${personId}/`);
           // window.location.replace(`https://dapper-caramel-e0264c.netlify.app/finish/`);
           
         };
