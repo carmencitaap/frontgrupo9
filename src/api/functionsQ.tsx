@@ -302,9 +302,9 @@ function GetQuestions(){
       }
       const currentQuestion = questions[currentQuestionIndex];
 
-      if (Number(test_id) !== Number(testId)) {
-        return <p>Test invalid</p>;
-      }
+      // if (Number(test_id) !== Number(testId)) {
+      //   return <p>Test invalid</p>;
+      // }
 
       return (
         <div key={currentQuestion['id']} className="div-question" >
