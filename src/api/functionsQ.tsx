@@ -70,7 +70,7 @@ function GetQuestions(){
         .then((response) => response.json())
         .then(data => {
             console.log(data);
-            setTestID(data.test_id)
+            setTestID(data.testid)
             setQuestions(data.questions)
           })
         .catch((err) => {
@@ -210,7 +210,7 @@ function GetQuestions(){
           }
         }
         setCurrentQuestionIndex((prevIndex) => prevIndex + 1);
-        createAnsweredQuestion(correct, currentQuestion?.id, currentQuestion?.difficulty, currentQuestion?.type_question, currentQuestion?.tags_question, test_id);
+        createAnsweredQuestion(correct, currentQuestion?.id, currentQuestion?.difficulty, currentQuestion?.type_question, currentQuestion?.tags_question, Number(testId));
       };
 
 
@@ -267,7 +267,7 @@ function GetQuestions(){
             }
           }
 
-          createAnsweredQuestion(correct, currentQuestion?.id, currentQuestion?.difficulty, currentQuestion?.type_question, currentQuestion?.tags_question, test_id);
+          createAnsweredQuestion(correct, currentQuestion?.id, currentQuestion?.difficulty, currentQuestion?.type_question, currentQuestion?.tags_question, Number(testId));
           // console.log("out", score)
           const percentageScore = (score/questions.length)*100;
           // console.log(percentageScore)
