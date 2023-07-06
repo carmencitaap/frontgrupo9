@@ -54,7 +54,6 @@ function GetQuestions(){
     const [multipleChoice, setMultipleChoice] = useState<MultipleChoice[]>([]);
     const [semiOpen, setSemiOpen] = useState<SemiOpen[]>([]);
     const [numeric, setNumeric] = useState<Numeric[]>([]);
-    const [test_id, setTestID] = useState();
     const [currentQuestionIndex, setCurrentQuestionIndex] = useState<number>(0);
     const [score, setScore] = useState<number>(1);
     const [answerSemiOpen, setAnswerSemiOpen] = useState<string | null>("");
@@ -70,7 +69,6 @@ function GetQuestions(){
         .then((response) => response.json())
         .then(data => {
             console.log(data);
-            setTestID(data.test)
             setQuestions(data.questions)
           })
         .catch((err) => {
@@ -302,9 +300,6 @@ function GetQuestions(){
       }
       const currentQuestion = questions[currentQuestionIndex];
 
-      // if (Number(test_id) !== Number(testId)) {
-      //   return <p>Test invalid</p>;
-      // }
 
       return (
         <div key={currentQuestion['id']} className="div-question" >
