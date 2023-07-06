@@ -57,6 +57,11 @@ function GetTests({ testId, personId, color }: GetTestsProps) {
             'Content-type': 'application/json; charset=UTF-8',
         },
     })
+    .then((response) => response.json())
+    .then((json) => console.log(json))
+    .catch((err) => {
+        console.log(err.message)
+    })
     console.log("TEST CREATED",id)
 };
 

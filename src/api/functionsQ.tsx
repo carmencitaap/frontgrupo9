@@ -131,17 +131,22 @@ function GetQuestions(){
         await fetch(ANSWEREDQUESTION_ENDPOINT, {
             method: 'POST',
             body: JSON.stringify({
-                correct: correct,
+                answered_test: answered_test,
                 question: questionId,
+                correct: correct,
                 difficulty: difficulty,
                 type_question: type_question,
                 tags_question: tags,
-                answered_test: answered_test,
                 answered: true,
             }),
             headers: {
                 'Content-type': 'application/json; charset=UTF-8',
             },
+        })
+        .then((response) => response.json())
+        .then((json) => console.log(json))
+        .catch((err) => {
+          console.log(err.message)
         })
         console.log("RESPUESTA A PREGUNTA CREADA",correct, questionId, difficulty, type_question, tags, answered_test);
     };
