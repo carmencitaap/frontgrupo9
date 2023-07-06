@@ -70,7 +70,7 @@ function GetQuestions(){
         .then((response) => response.json())
         .then(data => {
             console.log(data);
-            setTestID(data.testid)
+            setTestID(data.test)
             setQuestions(data.questions)
           })
         .catch((err) => {
