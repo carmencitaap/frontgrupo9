@@ -70,7 +70,7 @@ function GetQuestions(){
         .then((response) => response.json())
         .then(data => {
             console.log(data);
-            setTestID(data.testid)
+            setTestID(data.test)
             setQuestions(data.questions)
           })
         .catch((err) => {
@@ -302,7 +302,7 @@ function GetQuestions(){
       }
       const currentQuestion = questions[currentQuestionIndex];
 
-      if (test_id !== Number(testId)) {
+      if (Number(test_id) !== Number(testId)) {
         return <p>Test invalid</p>;
       }
 
