@@ -60,6 +60,7 @@ function GetQuestions(){
     const [answerSemiOpen, setAnswerSemiOpen] = useState<string | null>("");
     const [valueSemiOpen, setValueSemiOpen] = useState<string | null>(null);
     const { testId } = useParams<{ testId: string }>();
+    const {personId} = useParams<{ personId: string }>();
     const QUESTIONS_ENDPOINT = `https://cavenpal.pythonanywhere.com/test/${testId}/get_questions/`
 
 
@@ -267,7 +268,7 @@ function GetQuestions(){
           // console.log(percentageScore)
           console.log("length",questions.length)
 
-          window.location.replace(`https://dapper-caramel-e0264c.netlify.app/finish/${percentageScore}`);
+          window.location.replace(`https://dapper-caramel-e0264c.netlify.app/finish/${percentageScore}/person/{person_id}/`);
           // window.location.replace(`https://dapper-caramel-e0264c.netlify.app/finish/`);
           
         };
