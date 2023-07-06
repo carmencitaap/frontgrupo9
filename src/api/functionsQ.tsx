@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import { Autocomplete, TextField } from '@mui/material';
 
 interface Question {
     id: number;
@@ -30,6 +31,7 @@ interface Question {
     id: number;
     question: number;
     correct_answer: string;
+    options: string;
   }
 
   interface Numeric{
@@ -54,7 +56,9 @@ function GetQuestions(){
     const [numeric, setNumeric] = useState<Numeric[]>([]);
     const [test_id, setTestID] = useState();
     const [currentQuestionIndex, setCurrentQuestionIndex] = useState<number>(0);
-    //const [score, setScore] = useState<number>(1);
+    const [score, setScore] = useState<number>(1);
+    const [answerSemiOpen, setAnswerSemiOpen] = useState<string | null>("");
+    const [valueSemiOpen, setValueSemiOpen] = useState<string | null>(null);
     const { testId } = useParams<{ testId: string }>();
     const QUESTIONS_ENDPOINT = `https://cavenpal.pythonanywhere.com/test/${testId}/get_questions/`
 
@@ -167,22 +171,22 @@ function GetQuestions(){
           let numericQuestion = numeric.find((question) => question.question === currentQuestion?.id);
           if (answer === numericQuestion?.correct_answer.toString()) {
             correct = true
-            // setScore((prevScore) => {
-            //   const updatedScore = prevScore + 1;
-            //   return updatedScore;
-            // });
+            setScore((prevScore) => {
+              const updatedScore = prevScore + 1;
+              return updatedScore;
+            });
           }
         }
         else if (currentQuestion?.type_question === "semi-open"){
-          const formData = new FormData(document.getElementById('yourFormId') as HTMLFormElement);
-          const answer = formData.get('semi-open');
+          // const formData = new FormData(document.getElementById('yourFormId') as HTMLFormElement);
+          // const answer = formData.get('semi-open');
           let semiOpenQuestion = semiOpen.find((question) => question.question === currentQuestion?.id);
-          if (answer === String(semiOpenQuestion?.correct_answer)) {
+          if (answerSemiOpen === String(semiOpenQuestion?.correct_answer)) {
             correct = true;
-            // setScore((prevScore) => {
-            //   const updatedScore = prevScore + 1;
-            //   return updatedScore;
-            // });
+            setScore((prevScore) => {
+              const updatedScore = prevScore + 1;
+              return updatedScore;
+            });
           }
 
         }
@@ -193,10 +197,10 @@ function GetQuestions(){
           console.log("multiple choice question", multipleChoiceQuestion)
           if (answer === String(multipleChoiceQuestion?.correct_answer)) {
             correct = true;
-            // setScore((prevScore) => {
-            //   const updatedScore = prevScore + 1;
-            //   return updatedScore;
-            // });
+            setScore((prevScore) => {
+              const updatedScore = prevScore + 1;
+              return updatedScore;
+            });
           }
         }
         setCurrentQuestionIndex((prevIndex) => prevIndex + 1);
@@ -215,10 +219,10 @@ function GetQuestions(){
         
             if (String(answer) === String(trueFalseQuestion?.correct_answer)) {
               correct = true;
-              // setScore((prevScore) => {
-              //   const updatedScore = prevScore + 1;
-              //   return updatedScore;
-              // });
+              setScore((prevScore) => {
+                const updatedScore = prevScore + 1;
+                return updatedScore;
+              });
             }
             console.log("Selected answer true false:", answer);
           }
@@ -229,17 +233,17 @@ function GetQuestions(){
             
             if (answer === String(numericQuestion?.correct_answer)) {
               correct = true
-              // setScore((prevScore) => (prevScore + 1));
+              setScore((prevScore) => (prevScore + 1));
               // console.log(score)
             }
           }
           else if (currentQuestion?.type_question === "semi-open"){
-            const formData = new FormData(document.getElementById('yourFormId') as HTMLFormElement);
-            const answer = formData.get('semi-open');
+            // const formData = new FormData(document.getElementById('yourFormId') as HTMLFormElement);
+            // const answer = formData.get('semi-open');
             let semiOpenQuestion = semiOpen.find((question) => question.question === currentQuestion?.id);
-            if (answer === String(semiOpenQuestion?.correct_answer)) {
+            if (answerSemiOpen === String(semiOpenQuestion?.correct_answer)) {
               correct = true
-              // setScore((prevScore) => (prevScore + 1));
+              setScore((prevScore) => (prevScore + 1));
               // console.log(score)
             }
           }
@@ -248,7 +252,7 @@ function GetQuestions(){
             const answer = formData.get('alternatives');
             const multipleChoiceQuestion = multipleChoice.find((question) => question.question === currentQuestion?.id);
             if (answer === String(multipleChoiceQuestion?.correct_answer)) {
-              // setScore((prevScore) => (prevScore + 1));
+              setScore((prevScore) => (prevScore + 1));
               // console.log(score)
               correct = true
             }
@@ -259,12 +263,12 @@ function GetQuestions(){
 
           createAnsweredQuestion(correct, currentQuestion?.id, currentQuestion?.difficulty, currentQuestion?.type_question, currentQuestion?.tags_question, test_id);
           // console.log("out", score)
-          // const percentageScore = (score/questions.length)*100;
+          const percentageScore = (score/questions.length)*100;
           // console.log(percentageScore)
           console.log("length",questions.length)
 
-          //window.location.replace(`https://dapper-caramel-e0264c.netlify.app/finish/${percentageScore}`);
-          window.location.replace(`https://dapper-caramel-e0264c.netlify.app/finish/`);
+          window.location.replace(`https://dapper-caramel-e0264c.netlify.app/finish/${percentageScore}`);
+          // window.location.replace(`https://dapper-caramel-e0264c.netlify.app/finish/`);
           
         };
 
@@ -337,7 +341,20 @@ function GetQuestions(){
               {currentQuestion['type_question'] === 'semi-open' && (
                 <div>
                   <form id="yourFormId">
-                    <input type="text" placeholder="Ej: harry" name="semi-open" id="semi-open" className="answer-box numeric-input" />
+                    <Autocomplete
+                      value={answerSemiOpen}
+                      onChange={(event: any, newValue: string | null) => {
+                        setAnswerSemiOpen(newValue);
+                      }}
+                      inputValue={valueSemiOpen || ''}
+                      onInputChange={(event, newInputValue) => {
+                        setValueSemiOpen(newInputValue);
+                      }}
+                      id="semi-open"
+                      options={semiOpen.find((item) => item.question === currentQuestion.id)?.options.split(",") || []}
+                      sx={{ width: 300 }}
+                      renderInput={(params) => <TextField {...params} />}
+                    />
                   </form>
                 </div>
               )}
