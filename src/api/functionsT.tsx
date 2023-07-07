@@ -50,7 +50,7 @@ function GetTests({ testId, personId, color }: GetTestsProps) {
         method: 'POST',
         body: JSON.stringify({
             test: Number(testId),
-            evaluation: id,
+            evaluation: Number(id),
             person: Number(personId),
         }),
         headers: {
@@ -69,7 +69,7 @@ function GetTests({ testId, personId, color }: GetTestsProps) {
   return (
     <div>
       <div>
-        <div key={testId} className='margin'>
+        <div key={testId} className='margin hide'>
           <span>Test Number {testId}</span> <br />
           <span>Evaluation id: {evaluationId}</span> <br/>
           <span>Number of Questions: {test.number_of_questions}</span>

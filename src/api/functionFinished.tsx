@@ -11,16 +11,15 @@ interface AnsweredTest {
 
 
 function GetScore() {
-    const { score } = useParams();
+    const ANSWEREDTEST_ENDPOINT = "https://cavenpal.pythonanywhere.com/answeredtest/";
     const {personId} = useParams();
+    const {testId} = useParams();
     const [answeredTests ,setAnsweredTests] = useState<AnsweredTest[]>();
     const [answeredTest ,setAnsweredTest] = useState<AnsweredTest>();
-    // const [score, setScore] = useState(0);
-    const floatScore = parseFloat(score?.toString() || "0");
   
     useEffect(() => {
       // Fetch the score for the answered test from the API
-      fetch(`ANSWEREDTEST_ENDPOINT/`)
+      fetch(ANSWEREDTEST_ENDPOINT)
         .then(response => response.json())
         .then(data => {
           console.log(data);
@@ -30,33 +29,40 @@ function GetScore() {
     }, []);
 
     const getAnsweredTest = () => {
-        const answeredTest = answeredTests?.find(answeredTest => answeredTest.person === Number(personId));
+        const answeredTest = answeredTests?.find(answeredTest => answeredTest.person === Number(personId) && answeredTest.test === Number(testId));
         setAnsweredTest(answeredTest);
     }
     useEffect(() =>{
       getAnsweredTest();
     })
 
-    useEffect(() =>{
-      if(answeredTest){
-        fetch(`ANSWEREDTEST_ENDPOINT/${answeredTest?.id}/`, {
-          method: 'PUT',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({score: floatScore}),
-        })
-        .then(response => response.json())
-        .then(data => {
-          console.log('Success:', data);
-          setAnsweredTest(data);
-        })
-        .catch((error) => console.log(error));
-      }
-    })
+    // useEffect(() =>{
+    //   if(answeredTest){
+    //     fetch(`${ANSWEREDTEST_ENDPOINT}${answeredTest?.id}/`, {
+    //       method: 'PUT',
+    //       headers: {
+    //         'Content-Type': 'application/json',
+    //       },
+    //       body: JSON.stringify({
+    //         test: Number(answeredTest.test),
+    //         evaluation: Number(answeredTest.evaluation),
+    //         person: Number(answeredTest.person),
+    //         score: floatScore
+    //       }),
+    //     })
+    //     .then(response => response.json())
+    //     .then(data => {
+    //       console.log('Success:', data);
+    //       setAnsweredTest(data);
+    //     })
+    //     .catch((error) => console.log(error));
+    //   }
+    // })
   
     return (
-      <div>Your score: {Number(score).toFixed(2)}%</div>
+      <div>
+        <span>Your score: {answeredTest?.score}</span>
+      </div>
     );
   }
   

@@ -14,7 +14,7 @@ function App() {
         </div>
       </div> */}
       <Routes>
-        <Route path="/finish/:score/person/:personId" element={<FinishedTest />}/>
+        <Route path="/finish/:score/person/:personId/test/:testId" element={<FinishedTest />}/>
       </Routes>
 
       <Routes>

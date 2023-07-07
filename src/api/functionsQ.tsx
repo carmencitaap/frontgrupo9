@@ -53,6 +53,7 @@ const MULTIPLECHOICE_ENDPOINT = "https://cavenpal.pythonanywhere.com/multiplecho
 const SEMIOPEN_ENDPOINT = "https://cavenpal.pythonanywhere.com/semiopenquestion/";
 const NUMERIC_ENDPOINT = "https://cavenpal.pythonanywhere.com/numericquestion/";
 const ANSWEREDQUESTION_ENDPOINT = "https://cavenpal.pythonanywhere.com/answeredquestion/";
+const ANSWEREDSTEST_ENDPOINT = "https://cavenpal.pythonanywhere.com/answeredtest/";
 
 function GetQuestions(){
     const [questions, setQuestions] = useState<Question[]>([]);
@@ -138,18 +139,18 @@ function GetQuestions(){
 
       useEffect(() => {
         // Fetch the score for the answered test from the API
-        fetch(`ANSWEREDTEST_ENDPOINT/`)
+        fetch(ANSWEREDSTEST_ENDPOINT)
           .then(response => response.json())
           .then(data => {
             console.log(data);
             setAnsweredTests(data);
           })
-          .catch(error => console.log(error));
+          .catch(error => console.log("error message",error));
       }, []);
   
       const getAnsweredTest = () => {
-          const answeredTest = answeredTests?.find(answeredTest => answeredTest.person === Number(personId));
-          setAnsweredTest(answeredTest);
+          const correctTest = answeredTests?.find(answeredTest => answeredTest.person === Number(personId) && answeredTest.test === Number(testId));
+          setAnsweredTest(correctTest);
       }
       useEffect(() =>{
         getAnsweredTest();
@@ -215,7 +216,8 @@ function GetQuestions(){
           // const formData = new FormData(document.getElementById('yourFormId') as HTMLFormElement);
           // const answer = formData.get('semi-open');
           let semiOpenQuestion = semiOpen.find((question) => question.question === currentQuestion?.id);
-          if (answerSemiOpen === String(semiOpenQuestion?.correct_answer)) {
+          console.log(answerSemiOpen, semiOpenQuestion?.correct_answer)
+          if (answerSemiOpen === semiOpenQuestion?.correct_answer) {
             correct = true;
             setScore((prevScore) => {
               const updatedScore = prevScore + 1;
@@ -275,6 +277,7 @@ function GetQuestions(){
             // const formData = new FormData(document.getElementById('yourFormId') as HTMLFormElement);
             // const answer = formData.get('semi-open');
             let semiOpenQuestion = semiOpen.find((question) => question.question === currentQuestion?.id);
+            console.log(answerSemiOpen, semiOpenQuestion?.correct_answer)
             if (answerSemiOpen === String(semiOpenQuestion?.correct_answer)) {
               correct = true
               setScore((prevScore) => (prevScore + 1));
@@ -303,8 +306,7 @@ function GetQuestions(){
           // console.log(percentageScore)
           console.log("length",questions.length)
 
-          window.location.replace(`https://dapper-caramel-e0264c.netlify.app/finish/${percentageScore}/person/${personId}/`);
-          // window.location.replace(`https://dapper-caramel-e0264c.netlify.app/finish/`);
+          window.location.replace(`https://dapper-caramel-e0264c.netlify.app/finish/${percentageScore}/person/${personId}/test/${testId}`);
           
         };
 
