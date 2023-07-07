@@ -40,6 +40,14 @@ interface Question {
     correct_answer: number;
   }
 
+  interface AnsweredTest {
+    id: number;
+    test: number;
+    evaluation: number;
+    person: number;
+    score: number;
+}
+
 const TRUEFALSE_ENDPOINT = "https://cavenpal.pythonanywhere.com/truefalsequestion/";
 const MULTIPLECHOICE_ENDPOINT = "https://cavenpal.pythonanywhere.com/multiplechoicequestion/";
 const SEMIOPEN_ENDPOINT = "https://cavenpal.pythonanywhere.com/semiopenquestion/";
@@ -61,6 +69,9 @@ function GetQuestions(){
     const { testId } = useParams<{ testId: string }>();
     const {personId} = useParams<{ personId: string }>();
     const QUESTIONS_ENDPOINT = `https://cavenpal.pythonanywhere.com/test/${testId}/get_questions/`
+
+    const [answeredTests ,setAnsweredTests] = useState<AnsweredTest[]>();
+    const [answeredTest ,setAnsweredTest] = useState<AnsweredTest>();
 
 
 
@@ -124,6 +135,25 @@ function GetQuestions(){
             console.log(err.message)
         })
       }
+
+      useEffect(() => {
+        // Fetch the score for the answered test from the API
+        fetch(`ANSWEREDTEST_ENDPOINT/`)
+          .then(response => response.json())
+          .then(data => {
+            console.log(data);
+            setAnsweredTests(data);
+          })
+          .catch(error => console.log(error));
+      }, []);
+  
+      const getAnsweredTest = () => {
+          const answeredTest = answeredTests?.find(answeredTest => answeredTest.person === Number(personId));
+          setAnsweredTest(answeredTest);
+      }
+      useEffect(() =>{
+        getAnsweredTest();
+      })
 
       const createAnsweredQuestion = async (correct:boolean,questionId:any,difficulty:any, type_question:any, tags:any,answered_test:any) => {
         await fetch(ANSWEREDQUESTION_ENDPOINT, {
@@ -208,7 +238,7 @@ function GetQuestions(){
           }
         }
         setCurrentQuestionIndex((prevIndex) => prevIndex + 1);
-        createAnsweredQuestion(correct, currentQuestion?.id, currentQuestion?.difficulty, currentQuestion?.type_question, currentQuestion?.tags_question, Number(testId));
+        createAnsweredQuestion(correct, currentQuestion?.id, currentQuestion?.difficulty, currentQuestion?.type_question, currentQuestion?.tags_question, Number(answeredTest?.id));
       };
 
 
@@ -264,8 +294,10 @@ function GetQuestions(){
               correct = false
             }
           }
+          let numberTest = Number(testId)
+          console.log(numberTest)
 
-          createAnsweredQuestion(correct, currentQuestion?.id, currentQuestion?.difficulty, currentQuestion?.type_question, currentQuestion?.tags_question, Number(testId));
+          createAnsweredQuestion(correct, currentQuestion?.id, currentQuestion?.difficulty, currentQuestion?.type_question, currentQuestion?.tags_question, Number(answeredTest?.id));
           // console.log("out", score)
           const percentageScore = (score/questions.length)*100;
           // console.log(percentageScore)

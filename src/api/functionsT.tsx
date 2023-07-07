@@ -49,9 +49,9 @@ function GetTests({ testId, personId, color }: GetTestsProps) {
     await fetch(ANSWEREDTEST_ENDPOINT, {
         method: 'POST',
         body: JSON.stringify({
-            test: testId,
+            test: Number(testId),
             evaluation: id,
-            person: personId,
+            person: Number(personId),
         }),
         headers: {
             'Content-type': 'application/json; charset=UTF-8',
@@ -69,7 +69,7 @@ function GetTests({ testId, personId, color }: GetTestsProps) {
   return (
     <div>
       <div>
-        <div key={testId} className='margin hide'>
+        <div key={testId} className='margin'>
           <span>Test Number {testId}</span> <br />
           <span>Evaluation id: {evaluationId}</span> <br/>
           <span>Number of Questions: {test.number_of_questions}</span>
