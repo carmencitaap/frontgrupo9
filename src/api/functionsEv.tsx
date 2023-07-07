@@ -33,6 +33,7 @@ function GetEvaluation() {
     id: number;
     name: string;
     color: string;
+    secondary_color: string;
     avatar?: string;
     number_of_people: number;
   }
@@ -140,7 +141,10 @@ function GetEvaluation() {
   return (
     <div>
       <div key={evaluationId} className="eval-title" style={{ backgroundColor: group.color }}>
-        <div className="evtitle">{evaluation.name}</div>
+        <div className="evtitle">
+          {evaluation.name}
+          {group.avatar && <img src={group.avatar} alt="Avatar"  style={{width: '50px', height: '50px', float: 'left'}}/>}
+        </div>
       </div>
 
       <div className="instructions">
@@ -151,7 +155,7 @@ function GetEvaluation() {
       </div>
             <br />
       <div>
-        <GetTests testId={evaluation.test} personId={personId} color={group.color.substring(1)}/>
+        <GetTests testId={evaluation.test} personId={personId} color={group.color.substring(1)} secondary={group.secondary_color.substring(1)}/>
       </div>
     </div>
   );

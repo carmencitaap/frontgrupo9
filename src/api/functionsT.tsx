@@ -11,9 +11,10 @@ interface GetTestsProps {
   testId: number;
   personId: any; // Update the type of personId prop
   color : string;
+  secondary : string;
 }
 
-function GetTests({ testId, personId, color }: GetTestsProps) {
+function GetTests({ testId, personId, color, secondary }: GetTestsProps) {
 
   const [test, setTest] = useState<Test>({} as Test);
   const [, setColorTest] = useState('' as string);
@@ -41,8 +42,8 @@ function GetTests({ testId, personId, color }: GetTestsProps) {
   }
 
 
-  const handleClick = (testId: any, personId:any, color:any) => {
-    window.location.replace(`https://dapper-caramel-e0264c.netlify.app/test/${testId}/person/${personId}/color/${color}`);
+  const handleClick = (testId: any, personId:any, color:any, secondary:any) => {
+    window.location.replace(`https://dapper-caramel-e0264c.netlify.app/test/${testId}/person/${personId}/color/${color}/secondary/${secondary}`);
   };
 
   const createAnsweredTest = async (id: any) => {
@@ -75,7 +76,7 @@ function GetTests({ testId, personId, color }: GetTestsProps) {
           <span>Number of Questions: {test.number_of_questions}</span>
         </div>
           
-          <button key='start-button' className="button-18 margin" onClick = {(event) => {handleClick(testId,personId,color); createAnsweredTest(evaluationId)}}>Start </button>
+          <button key='start-button' className="button-18 margin" style={{backgroundColor: `#${secondary}`}} onClick = {(event) => {handleClick(testId,personId,color,secondary); createAnsweredTest(evaluationId)}}>Start </button>
       </div>
     </div>
   );

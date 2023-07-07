@@ -21,7 +21,7 @@ function App() {
             <Route path="/evaluation/:evaluationId/person/:personId" element={<EvaluationView />}></Route>
       </Routes>
       <Routes>
-        <Route path="/test/:testId/person/:personId/color/:color" element={<QuestionView/>}></Route>
+        <Route path="/test/:testId/person/:personId/color/:color/secondary/:secondary" element={<QuestionView/>}></Route>
       </Routes>
     </Router>
   );

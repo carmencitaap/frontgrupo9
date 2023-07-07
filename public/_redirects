@@ -1,3 +1,3 @@
 /evaluation/:id/*    /index.html   200
 /test/:id/*    /index.html   200
-/finish/:score/person/:personId/test/:tesId/* /index.html 200
+/finish/:score/person/:personId/test/:testId/* /index.html 200

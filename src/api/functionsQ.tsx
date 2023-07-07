@@ -69,6 +69,7 @@ function GetQuestions(){
     const [valueSemiOpen, setValueSemiOpen] = useState<string | null>(null);
     const { testId } = useParams<{ testId: string }>();
     const {personId} = useParams<{ personId: string }>();
+    const {secondary} = useParams<{ secondary: string }>();
     const QUESTIONS_ENDPOINT = `https://cavenpal.pythonanywhere.com/test/${testId}/get_questions/`
 
     const [answeredTests ,setAnsweredTests] = useState<AnsweredTest[]>();
@@ -349,7 +350,7 @@ function GetQuestions(){
             <span></span>
             <span className="text-center-ty">Type: {currentQuestion['type_question']}</span>
             <div className="content_test">
-              <div className="question-statement">{currentQuestion['text']}</div>
+              <div className="question-statement" style={{backgroundColor: `#${secondary}`}}>{currentQuestion['text']}</div>
             </div>
             
             <div className="infor_answ">
@@ -426,12 +427,12 @@ function GetQuestions(){
             </div>
 
             {currentQuestionIndex < questions.length - 1 && (
-              <button className="button-18 margin btn btn-primary" onClick={(event) => {handleNextQuestion(event);}}>
+              <button className="button-18 margin btn btn-primary"  style={{backgroundColor: `#${secondary}`}} onClick={(event) => {handleNextQuestion(event);}}>
                 Next
               </button>
             )}
             {currentQuestionIndex === questions.length - 1 && (
-              <button className="button-18 margin btn btn-primary" onClick={(event) => handleFinish(event)}>
+              <button className="button-18 margin btn btn-primary" style={{backgroundColor: `#${secondary}`}} onClick={(event) => handleFinish(event)}>
                 Finish
               </button>
             )}
